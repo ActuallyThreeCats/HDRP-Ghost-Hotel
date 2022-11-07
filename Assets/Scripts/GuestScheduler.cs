@@ -6,13 +6,14 @@ using UnityEngine;
 public class GuestScheduler : MonoBehaviour
 {
     [SerializeField] bool isHoliday;
-   // private TimeManager timeManager;
+   private TimeManager timeManager;
     //[SerializeField] private bool isStartingActivity;
     public bool isDoingActivity = false;
     //private bool isResettingActivity;
     private ActivitiesCheck activitiesCheck;
     private HotelActivities hotelActivites;
     private RandomHotelActivities randomHotelActivities;
+    private GuestController guestController;
 
     private int chosenActivity;
     #region Enums
@@ -80,7 +81,17 @@ public class GuestScheduler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        timeManager.OnDateTimeChanged += TimeManager_OnDateTimeChanged;
+        guestController = gameObject.GetComponent<GuestController>();
+    }
+
+    private void TimeManager_OnDateTimeChanged(object sender, TimeManager.OnDateTimeChangedEventArgs e)
+    {
+        if (gameObject.GetComponent<GuestController>().isCheckedIn && !isDoingActivity)
+        {
+            CheckForScheduledActivities(e._hour, e._minute);
+        }
     }
 
     // Update is called once per frame
@@ -88,6 +99,22 @@ public class GuestScheduler : MonoBehaviour
     {
         CheckForActivity();
         //DoActivity();
+    }
+
+    public void CheckForScheduledActivities(int hour, int minute)
+    {
+        if(hour >= HotelScheduler.Instance.breakfastStartHour)
+        {
+            if(minute >= HotelScheduler.Instance.breakfastStartMinute)
+            {
+                int breakfastCheck = Random.Range(1, 4);
+                if(breakfastCheck >1)
+                {
+                    guestController.SwitchState(guestController.breakfastState);
+                    isDoingActivity = true;
+                }
+            }
+        }
     }
 
     public void CheckForActivity()

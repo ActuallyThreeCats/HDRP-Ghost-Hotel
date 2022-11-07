@@ -29,6 +29,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int hour;
     [Range(1, 60)]
     [SerializeField] private int minute;
+    [SerializeField] private int totalDayMinutes;
 
     [Header("A.M. & P.M.")]
     [SerializeField] private bool twelveHourClock;
@@ -38,6 +39,7 @@ public class TimeManager : MonoBehaviour
     [Header("Advancing Time Control")]
     [SerializeField] private float timeBetweenTicks;
     [SerializeField] private float currentTickTime;
+    [SerializeField] private float currentTick;
     [SerializeField] private int advanceMinutesBy;
     [SerializeField] private int maxMonths;  
     [SerializeField] private int maxDays = 28;  
@@ -47,6 +49,7 @@ public class TimeManager : MonoBehaviour
 
     public event EventHandler<OnDateTimeChangedEventArgs> OnDateTimeChanged;
     public event EventHandler<OnDateTimeChangedEventArgs> OnDateChangeOnly;
+    public event EventHandler<OnDateTimeChangedEventArgs> OnHourChanged;
     
 
     public class OnDateTimeChangedEventArgs : EventArgs
@@ -74,6 +77,7 @@ public class TimeManager : MonoBehaviour
             currentTickTime = 0;
             Tick();
         }
+        //currentTick += (currentTickTime / timeBetweenTicks) * Time.deltaTime;
 
         //for debuggin purposes, to remove later
         if (gettingTime)
@@ -83,10 +87,28 @@ public class TimeManager : MonoBehaviour
         }
     }
 
+    private void OnValidate()
+    {
+        totalDayMinutes = hour * 60;
+        currentTick = hour * 3600;
+        if (twelveHourClock)
+        {
+            if(hour >= 12)
+            {
+                displayHour -= 12;
+            }
+        }
+        displayHour = hour;
+    }
+
     private void Tick()
     {
         AdvanceTime();
         FireEvent();
+        if(currentTickTime >= 86400)
+        {
+            currentTick = 0;
+        }
     }
 
     private void FireEvent()
@@ -108,10 +130,25 @@ public class TimeManager : MonoBehaviour
     private void AdvanceTime()
     {
         minute += advanceMinutesBy;
+        totalDayMinutes++;
+
         if(minute >= 59)
         {
             minute = 0;
             hour++;
+            OnHourChanged?.Invoke(this, new OnDateTimeChangedEventArgs
+            {
+            _year = year,
+            _month = month,
+            _dayInMonth = dayInMonth,
+            _dayInWeek = dayInWeek,
+            _hour = hour,
+            _minute = minute,
+            _displayHour = displayHour,
+            _isPM = isPM,
+            _twelveHourclock = twelveHourClock
+
+            });
             if(twelveHourClock && hour == 1)
             {
                 displayHour = 1;
@@ -126,7 +163,7 @@ public class TimeManager : MonoBehaviour
         if(hour >= 24)
         {
             NewDay();
-           
+            totalDayMinutes = 0;
         }
 
         if (hour > 11 && !isPM)
@@ -230,6 +267,27 @@ public class TimeManager : MonoBehaviour
     public int GetMinutes()
     {
         return minute;
+    }
+    public int GetHours()
+    {
+        return hour;
+    }
+    public float GetTimeBetweenTicks()
+    {
+        return timeBetweenTicks;
+    }
+
+    public int GetTotalDayMinutes()
+    {
+        return totalDayMinutes;
+    }
+    public float GetCurrentTick()
+    {
+        return currentTick;
+    }
+    public float GetCurrentTickTime()
+    {
+        return currentTickTime;
     }
 
     public void GetTime()
