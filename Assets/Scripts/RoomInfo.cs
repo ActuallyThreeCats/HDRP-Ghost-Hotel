@@ -19,4 +19,9 @@ public class RoomInfo : MonoBehaviour
         return Waypoints;
     }
 
+    public int GetRoomCost()
+    {
+        return cost;
+    }
+
 }

@@ -29,6 +29,9 @@ public class GuestController : MonoBehaviour
     public RoomState roomState = new RoomState();
     public BreakfastState breakfastState = new BreakfastState();
     public WanderState wanderState = new WanderState();
+    public CoffeeState coffeeState = new CoffeeState();
+    public VendingMachineState vendingMachineState = new VendingMachineState();
+    public IceMachineState iceMachineState = new IceMachineState();
 
     private void OnEnable()
     {

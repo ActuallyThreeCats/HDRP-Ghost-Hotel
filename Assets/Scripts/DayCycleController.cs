@@ -44,7 +44,7 @@ public class DayCycleController : MonoBehaviour
         {
             float timeElapsed = timeManager.GetCurrentTickTime();
             float time = timeManager.GetTimeBetweenTicks();
-            Debug.Log(timeElapsed / time);
+            //Debug.Log(timeElapsed / time);
             sun.transform.rotation = Quaternion.Slerp(currentSunPosition, Quaternion.Euler(new Vector3(sunRotation, 0, 15.4f)), (timeElapsed / time));
         }
 
@@ -54,7 +54,7 @@ public class DayCycleController : MonoBehaviour
     {
         timeInMinutes = minutes / 1440;
         currentSunPosition = sun.transform.rotation;
-        Debug.Log(currentSunPosition + "Current Sun Position");
+        //Debug.Log(currentSunPosition + "Current Sun Position");
         sunRotation = Mathf.Lerp(-90, 270, timeInMinutes);
     }
 

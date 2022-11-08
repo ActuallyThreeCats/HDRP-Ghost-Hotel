@@ -70,9 +70,9 @@ public class GuestSpawner : MonoBehaviour
     {
         respawnAvailable = false;
         int respawnCountdown = Random.Range(3, 10);
-        Debug.Log("Respawning in " + respawnCountdown);
+        //Debug.Log("Respawning in " + respawnCountdown);
         yield return new WaitForSeconds(respawnCountdown);
-        Debug.Log("Currently Respawning Guest");
+        //Debug.Log("Currently Respawning Guest");
         Instantiate(guestPrefab, waypoint);
         if (currentGuests + waitingGuests < buildingCapacity && !respawnAvailable)
         {

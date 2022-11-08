@@ -15,6 +15,8 @@ public class RoomState : State
                 guest.SetWaypoint(VacancyManager.Instance.roomInfo[i].GetWayPoints()[0].position);
                 guest.agent.SetDestination(guest.GetWaypoint());
                 GuestManager.Instance.occupants.Add(guest);
+                guest.SubtractMoney(VacancyManager.Instance.roomInfo[i].GetRoomCost());
+                MoneyManager.Instance.AddToHotelBank(VacancyManager.Instance.roomInfo[i].GetRoomCost());
                 break;
             }
         }
@@ -25,6 +27,9 @@ public class RoomState : State
         if (guest.agent.remainingDistance < 0.1f)
         {
             guest.isCheckedIn = true;
+            Debug.Log(guest.GetGuestID() + " is Checked In" );
+            guest.GetComponent<GuestScheduler>().isDoingActivity = false;
+
         }
     }
 

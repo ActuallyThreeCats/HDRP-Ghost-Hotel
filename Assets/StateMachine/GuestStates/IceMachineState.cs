@@ -3,42 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using Crafty.Systems.StateMachine;
 
-public class BreakfastState : State
+public class IceMachineState : State
 {
-    float eatingTime = 5f;
-    float amountEatenTime;
+    float totalTime = 3f;
+    float elapsedTime;
 
     public override void EnterState(GuestController guest)
     {
-        Debug.Log(guest.GetGuestID() + " has entered breakfast state");
+        Debug.Log("Entered Ice Machine State");
         for (int i = 0; i < GuestManager.Instance.waypoints.Count; i++)
         {
-            if (GuestManager.Instance.waypoints[i].name == "Breakfast")
+            if (GuestManager.Instance.waypoints[i].name == "IceMachineWaypoint")
             {
                 guest.SetWaypoint(GuestManager.Instance.waypoints[i].transform.position);
                 guest.agent.SetDestination(guest.GetWaypoint());
-            }
-            if (i == GuestManager.Instance.waypoints.Count && GuestManager.Instance.waypoints[i].name != "Breakfast")
-            {
-                Debug.LogError("No waypoint titled Breakfast");
+
             }
         }
     }
 
     public override void UpdateState(GuestController guest)
     {
-        if(guest.agent.remainingDistance < 0.5f)
+        if (guest.agent.remainingDistance < 0.5f)
         {
-            if (amountEatenTime < eatingTime)
+            if (elapsedTime < totalTime)
             {
-                amountEatenTime += Time.deltaTime;
+                elapsedTime += Time.deltaTime;
+                Debug.Log(elapsedTime);
             }
-            if(amountEatenTime >= eatingTime)
+            if (elapsedTime >= totalTime)
             {
-                guest.GetComponent<GuestScheduler>().isDoingActivity = false;
-                guest.GetComponent<GuestScheduler>().isScheduledActivity = false;
-            }
 
+                guest.GetComponent<GuestScheduler>().isDoingActivity = false;
+            }
         }
 
     }
@@ -48,3 +45,4 @@ public class BreakfastState : State
 
     }
 }
+

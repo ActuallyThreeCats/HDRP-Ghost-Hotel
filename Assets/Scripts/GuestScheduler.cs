@@ -12,8 +12,9 @@ public class GuestScheduler : MonoBehaviour
     //private bool isResettingActivity;
     private ActivitiesCheck activitiesCheck;
     private HotelActivities hotelActivites;
-    private RandomHotelActivities randomHotelActivities;
+    public RandomHotelActivities randomHotelActivities;
     private GuestController guestController;
+    public bool isScheduledActivity;
 
     private int chosenActivity;
     #region Enums
@@ -39,12 +40,12 @@ public class GuestScheduler : MonoBehaviour
         Walking = 1,
         Swimming = 2,
     }
-    enum RandomHotelActivities
+    public enum RandomHotelActivities
     {
         Wander = 1,
         GetIce = 2,
         VendingMachines = 3,
-        GiftShop = 4,   
+        Coffee = 4,   
     }
 
     enum TownActivities
@@ -86,9 +87,14 @@ public class GuestScheduler : MonoBehaviour
         guestController = gameObject.GetComponent<GuestController>();
     }
 
+    private void OnDisable()
+    {
+        timeManager.OnDateTimeChanged -= TimeManager_OnDateTimeChanged;
+    }
+
     private void TimeManager_OnDateTimeChanged(object sender, TimeManager.OnDateTimeChangedEventArgs e)
     {
-        if (gameObject.GetComponent<GuestController>().isCheckedIn && !isDoingActivity)
+        if (gameObject.GetComponent<GuestController>().isCheckedIn )
         {
             CheckForScheduledActivities(e._hour, e._minute);
         }
@@ -97,8 +103,17 @@ public class GuestScheduler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForActivity();
+        if (!isScheduledActivity)
+        {
+            CheckForActivity();
+
+        }
         //DoActivity();
+    }
+
+    public void CheckForFillerActivity()
+    {
+
     }
 
     public void CheckForScheduledActivities(int hour, int minute)
@@ -107,38 +122,76 @@ public class GuestScheduler : MonoBehaviour
         {
             if(minute >= HotelScheduler.Instance.breakfastStartMinute)
             {
+                isScheduledActivity = true;
+
                 int breakfastCheck = Random.Range(1, 4);
-                if(breakfastCheck >1)
+                Debug.Log("Breakfast Check");
+                if(breakfastCheck >1 && !isDoingActivity)
                 {
                     guestController.SwitchState(guestController.breakfastState);
                     isDoingActivity = true;
                 }
+
             }
         }
     }
 
     public void CheckForActivity()
     {
-        int wanderingCheck = Random.Range(1, 5);
+        int wanderingCheck = Random.Range(1, 6);
 
    
             if (gameObject.GetComponent<GuestController>().isCheckedIn && !isDoingActivity)
             {
             Debug.Log("WanderCheck: " + wanderingCheck);
-                if (wanderingCheck > 3)
+                if (wanderingCheck > 1)
                 {
 
-                    Debug.Log("Checked for Activity");
+                    
 
-                    int enumCount = System.Enum.GetNames(typeof(ActivitiesCheck)).Length;
+                    //Debug.Log("Checked for Activity");
 
-                    int randomPicker = Random.Range(1, enumCount);
+                    //int enumCount = System.Enum.GetNames(typeof(ActivitiesCheck)).Length;
 
-                    activitiesCheck = (ActivitiesCheck)randomPicker;
-                    //activitiesCheck = ActivitiesCheck.HotelActivities;
-                    //isStartingActivity = true;
-                    CheckForSubActivity();
+                    int randomPicker = Random.Range(1, System.Enum.GetNames(typeof(RandomHotelActivities)).Length + 1);
+                    randomHotelActivities = (RandomHotelActivities)randomPicker;
+                switch (randomHotelActivities)
+                {
+                    case RandomHotelActivities.Wander:
+                        guestController.SwitchState(guestController.wanderState);
+                        isDoingActivity = true;
+                        Debug.Log("Wander Machine State for " + guestController.GetGuestID());
+
+                        break;
+                    case RandomHotelActivities.GetIce:
+                        guestController.SwitchState(guestController.iceMachineState);
+                        isDoingActivity = true;
+                        Debug.Log("Ice  Machine State for " + guestController.GetGuestID());
+
+                        break;
+                    case RandomHotelActivities.VendingMachines:
+                        guestController.SwitchState(guestController.vendingMachineState);
+                        isDoingActivity = true;
+                        Debug.Log("Vending Machine State for " + guestController.GetGuestID());
+
+                        break;
+                    case RandomHotelActivities.Coffee:
+                        guestController.SwitchState(guestController.coffeeState);
+                        isDoingActivity = true;
+                        Debug.Log("Coffee State for " + guestController.GetGuestID());
+                        break;
+                    default:
+                        break;
                 }
+
+
+                //activitiesCheck = (ActivitiesCheck)randomPicker;
+                ////activitiesCheck = ActivitiesCheck.HotelActivities;
+                //isStartingActivity = true;
+
+
+                //CheckForSubActivity();
+            }
                 else
                 {
                     Debug.Log("Wandering");
@@ -148,79 +201,78 @@ public class GuestScheduler : MonoBehaviour
             }
         
     }
-
     public void CheckForSubActivity()
     {
-        //if (isStartingActivity)
-        //{
-            Debug.Log("StartingActivity");
-            //isStartingActivity = false;
-            isDoingActivity = true;
-            int enumCount = 0;
-            int randomPicker = 0;
 
-            switch (activitiesCheck)
-            {
-
-                case ActivitiesCheck.HotelActivities: // Hotel Activities
-                    enumCount = System.Enum.GetNames(typeof(HotelActivities)).Length;
-                    randomPicker = Random.Range(1, enumCount + 1);
-                    DoHotelActivity(randomPicker);
-                    // Debug.Log("Doing Hotel Activities: " + (HotelActivities)randomPicker);
-                    break;
-                case ActivitiesCheck.RandomHotelActivites: // Random Hotel Activities
-                    enumCount = System.Enum.GetNames(typeof(RandomHotelActivities)).Length;
-                    randomPicker = Random.Range(1, enumCount + 1);
-                    //Debug.Log("Doing Random Hotel Activities");
-                    DoRandomHotelActivity(randomPicker);
-
-                    break;
-                case ActivitiesCheck.TownActivities: // Town Activities
-                    enumCount = System.Enum.GetNames(typeof(TownActivities)).Length;
-                    randomPicker = Random.Range(1, enumCount + 1);
-                    //Debug.Log("Doing Town Activities");
-
-                    break;
-                case ActivitiesCheck.RandomTownActivities: // Random Town Activities
-                    enumCount = System.Enum.GetNames(typeof(RandomTownActivities)).Length;
-                    randomPicker = Random.Range(1, enumCount + 1);
-                    //Debug.Log("Doing Random Town Activities");
-
-                    break;
-                case ActivitiesCheck.HolidayActivities: // Holiday Activities
-                    enumCount = System.Enum.GetNames(typeof(HolidayActivities)).Length;
-                    randomPicker = Random.Range(1, enumCount + 1);
-                    //Debug.Log("Doing Holiday Activities");
-
-                    if (!isHoliday)
-                    {
-                        break;
-                    }
-                    break;
-                case ActivitiesCheck.RandomHolidayActivities: // Random Holiday Activities
-                    enumCount = System.Enum.GetNames(typeof(RandomHolidayActivities)).Length;
-                    randomPicker = Random.Range(1, enumCount + 1);
-                    //Debug.Log("Doing Random Holiday Activities");
-
-                    if (!isHoliday)
-                    {
-                        break;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        
-            
-        //}
     }
 
+    #region CheckForSubActivity 
+    //public void CheckForSubActivity()
+    //{
+    //    //if (isStartingActivity)
+    //    //{
+    //        Debug.Log("StartingActivity");
+    //        //isStartingActivity = false;
+    //        isDoingActivity = true;
+    //        int enumCount = 0;
+    //        int randomPicker = 0;
 
-    public void DoActivity()
-    {
-       
-    }
+    //        switch (activitiesCheck)
+    //        {
 
+    //            case ActivitiesCheck.HotelActivities: // Hotel Activities
+    //                enumCount = System.Enum.GetNames(typeof(HotelActivities)).Length;
+    //                randomPicker = Random.Range(1, enumCount + 1);
+    //                DoHotelActivity(randomPicker);
+    //                // Debug.Log("Doing Hotel Activities: " + (HotelActivities)randomPicker);
+    //                break;
+    //            case ActivitiesCheck.RandomHotelActivites: // Random Hotel Activities
+    //                enumCount = System.Enum.GetNames(typeof(RandomHotelActivities)).Length;
+    //                randomPicker = Random.Range(1, enumCount + 1);
+    //                //Debug.Log("Doing Random Hotel Activities");
+    //                DoRandomHotelActivity(randomPicker);
+
+    //                break;
+    //            case ActivitiesCheck.TownActivities: // Town Activities
+    //                enumCount = System.Enum.GetNames(typeof(TownActivities)).Length;
+    //                randomPicker = Random.Range(1, enumCount + 1);
+    //                //Debug.Log("Doing Town Activities");
+
+    //                break;
+    //            case ActivitiesCheck.RandomTownActivities: // Random Town Activities
+    //                enumCount = System.Enum.GetNames(typeof(RandomTownActivities)).Length;
+    //                randomPicker = Random.Range(1, enumCount + 1);
+    //                //Debug.Log("Doing Random Town Activities");
+
+    //                break;
+    //            case ActivitiesCheck.HolidayActivities: // Holiday Activities
+    //                enumCount = System.Enum.GetNames(typeof(HolidayActivities)).Length;
+    //                randomPicker = Random.Range(1, enumCount + 1);
+    //                //Debug.Log("Doing Holiday Activities");
+
+    //                if (!isHoliday)
+    //                {
+    //                    break;
+    //                }
+    //                break;
+    //            case ActivitiesCheck.RandomHolidayActivities: // Random Holiday Activities
+    //                enumCount = System.Enum.GetNames(typeof(RandomHolidayActivities)).Length;
+    //                randomPicker = Random.Range(1, enumCount + 1);
+    //                //Debug.Log("Doing Random Holiday Activities");
+
+    //                if (!isHoliday)
+    //                {
+    //                    break;
+    //                }
+    //                break;
+    //            default:
+    //                break;
+    //        }
+
+
+    //    //}
+    //}
+    #endregion
 
     public void DoHotelActivity(int activity)
     {
@@ -254,7 +306,8 @@ public class GuestScheduler : MonoBehaviour
                 break;
             case RandomHotelActivities.VendingMachines:
                 break;
-            case RandomHotelActivities.GiftShop:
+            case RandomHotelActivities.Coffee:
+                guestController.SwitchState(guestController.coffeeState);
                 break;
             default:
                 break;
