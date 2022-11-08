@@ -10,7 +10,7 @@ public class QueueingState : State
 
     public override void EnterState(GuestController guest)
     {
-        Debug.Log("There are currently " + CheckInManager.Instance.guestsInQueue.Count + " guests in queue.");
+        //Debug.Log("There are currently " + CheckInManager.Instance.guestsInQueue.Count + " guests in queue.");
 
         SetQueue(guest);
     }
