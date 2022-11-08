@@ -6,8 +6,10 @@ public class MouseLook : MonoBehaviour
 {
     [SerializeField] float sensX = 16f;
     [SerializeField] float sensY = 0.5f;
-    [SerializeField] float mouseSensX;
-    [SerializeField] float mouseSensY;
+    [SerializeField] public float mouseSensX;
+    [SerializeField] public float mouseSensY;
+    [SerializeField] public float controllerSensX;
+    [SerializeField] public float controllerSensY;
     InputManager input;
     float mouseX, mouseY;
 
@@ -42,6 +44,8 @@ public class MouseLook : MonoBehaviour
         {
             mouseX = mouseInput.x * mouseSensX;
             mouseY = mouseInput.y * mouseSensY;
+
+
         }
         else
         {

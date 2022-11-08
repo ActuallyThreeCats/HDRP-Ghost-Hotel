@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.Rendering;
 public enum Days
 {
     Sunday = 1,
@@ -99,6 +99,8 @@ public class TimeManager : MonoBehaviour
             }
         }
         displayHour = hour;
+
+        //gameObject.GetComponent<DayCycleController>().UpdateTime();
     }
 
     private void Tick()

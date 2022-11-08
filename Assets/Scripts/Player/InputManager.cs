@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     InteractSystem interactSystem;
 
     Vector2 horizontalInput;
-    Vector2 mouseInput;
+    public Vector2 mouseInput;
 
     float thirdPersonX;
     bool isMouse;
@@ -151,7 +151,7 @@ public class InputManager : MonoBehaviour
         }else if(thirdPerson.Priority > firstPerson.Priority)
         {
 
-            thirdPersonCam.ReceiveInput(mouseInput);
+            thirdPersonCam.ReceiveInput(mouseInput, isMouse);
         }
         movement.ReceiveInput(horizontalInput);
     }
