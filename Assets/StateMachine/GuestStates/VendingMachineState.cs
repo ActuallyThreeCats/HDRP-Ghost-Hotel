@@ -18,6 +18,8 @@ public class VendingMachineState : State
             {
                 guest.SetWaypoint(GuestManager.Instance.waypoints[i].transform.position);
                 guest.agent.SetDestination(guest.GetWaypoint());
+                guest.SubtractMoney(PricesManager.Instance.GetVendingMachinePrice());
+                MoneyManager.Instance.AddToHotelBank(PricesManager.Instance.GetVendingMachinePrice());
 
             }
             if (i == GuestManager.Instance.waypoints.Count && GuestManager.Instance.waypoints[i].name != "VendingMachineWaypoint")
