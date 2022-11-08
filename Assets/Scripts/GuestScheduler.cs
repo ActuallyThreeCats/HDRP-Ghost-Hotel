@@ -15,6 +15,12 @@ public class GuestScheduler : MonoBehaviour
     public RandomHotelActivities randomHotelActivities;
     private GuestController guestController;
     public bool isScheduledActivity;
+    [SerializeField] private bool hasDoneBreakfast;
+    [SerializeField] private bool hasDoneCheckout;
+    private int hour;
+    private int minute;
+    [SerializeField] private bool forceCheckout;
+
 
     private int chosenActivity;
     #region Enums
@@ -45,7 +51,8 @@ public class GuestScheduler : MonoBehaviour
         Wander = 1,
         GetIce = 2,
         VendingMachines = 3,
-        Coffee = 4,   
+        Coffee = 4, 
+        Hiking =5,
     }
 
     enum TownActivities
@@ -96,13 +103,24 @@ public class GuestScheduler : MonoBehaviour
     {
         if (gameObject.GetComponent<GuestController>().isCheckedIn )
         {
-            CheckForScheduledActivities(e._hour, e._minute);
+            hour = e._hour;
+            minute = e._minute;
+        }
+        if (hour ==0 && minute == 0)
+        {
+            hasDoneCheckout = false;
+            hasDoneBreakfast = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+        
+        CheckForScheduledActivities(hour, minute);
+
+        
         if (!isScheduledActivity)
         {
             CheckForActivity();
@@ -118,10 +136,11 @@ public class GuestScheduler : MonoBehaviour
 
     public void CheckForScheduledActivities(int hour, int minute)
     {
-        if(hour >= HotelScheduler.Instance.breakfastStartHour)
+
+        //breakfast
+        if(hour >= HotelScheduler.Instance.breakfastStartHour && hour < HotelScheduler.Instance.breakfastEndHour && !hasDoneBreakfast)
         {
-            if(minute >= HotelScheduler.Instance.breakfastStartMinute)
-            {
+
                 isScheduledActivity = true;
 
                 int breakfastCheck = Random.Range(1, 4);
@@ -130,10 +149,31 @@ public class GuestScheduler : MonoBehaviour
                 {
                     guestController.SwitchState(guestController.breakfastState);
                     isDoingActivity = true;
+                    hasDoneBreakfast = true;
+                }
+
+        }
+        //Checkout
+        else if(hour >= HotelScheduler.Instance.checkOutHour && hour <= HotelScheduler.Instance.checkOutHour + 2 && !hasDoneCheckout)
+        {
+            if (guestController.roomInfo != null)
+            {
+                if (guestController.roomInfo.GetDaysRemaining() == 0 || forceCheckout)
+                {
+                    isScheduledActivity = true;
+                    guestController.SwitchState(guestController.checkoutState);
+                    isDoingActivity = true;
+                    hasDoneCheckout = true;
+                    Debug.Log("Ran Checkout State Code");
                 }
 
             }
         }
+
+        //checkout
+        
+        
+        
     }
 
     public void CheckForActivity()
@@ -153,7 +193,11 @@ public class GuestScheduler : MonoBehaviour
 
                     //int enumCount = System.Enum.GetNames(typeof(ActivitiesCheck)).Length;
 
+
+                    //only randoms from filler activities
                     int randomPicker = Random.Range(1, System.Enum.GetNames(typeof(RandomHotelActivities)).Length + 1);
+
+
                     randomHotelActivities = (RandomHotelActivities)randomPicker;
                 switch (randomHotelActivities)
                 {
@@ -179,6 +223,12 @@ public class GuestScheduler : MonoBehaviour
                         guestController.SwitchState(guestController.coffeeState);
                         isDoingActivity = true;
                         Debug.Log("Coffee State for " + guestController.GetGuestID());
+                        break;
+                    case RandomHotelActivities.Hiking:
+                        guestController.SwitchState(guestController.hikingState);
+                        isDoingActivity = true;
+                        Debug.Log("Hiking State for " + guestController.GetGuestID());
+
                         break;
                     default:
                         break;

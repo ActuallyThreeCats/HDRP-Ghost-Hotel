@@ -23,6 +23,7 @@ public class GuestController : MonoBehaviour
     //add geter/seter for this later
     public float timeToWait = 4f;
     public float currentTime;
+    public Collider targetCollider;
 
 
     State currentState;
@@ -36,6 +37,7 @@ public class GuestController : MonoBehaviour
     public VendingMachineState vendingMachineState = new VendingMachineState();
     public IceMachineState iceMachineState = new IceMachineState();
     public CheckOutState checkoutState = new CheckOutState();
+    public HikingState hikingState = new HikingState();
 
     private void OnEnable()
     {
@@ -168,5 +170,18 @@ public class GuestController : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("HikingPathExit"))
+        {
+            targetCollider = other;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        targetCollider = null;
     }
 }

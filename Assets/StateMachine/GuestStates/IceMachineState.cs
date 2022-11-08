@@ -29,7 +29,7 @@ public class IceMachineState : State
             if (elapsedTime < totalTime)
             {
                 elapsedTime += Time.deltaTime;
-                Debug.Log(elapsedTime);
+                //Debug.Log(elapsedTime);
             }
             if (elapsedTime >= totalTime)
             {

@@ -25,17 +25,12 @@ public class GuestSpawner : MonoBehaviour
         //fix this to be more dynamic in regards to wrapping time
         if (e._hour >= HotelScheduler.Instance.checkInStartHour && e._hour < HotelScheduler.Instance.checkInEndHour)
         {
-            if(e._minute >= HotelScheduler.Instance.checkInEndMinute)
-            {
+        
                 checkInHours= true;
-            }
-        }else if(e._hour == HotelScheduler.Instance.checkInEndHour)
+            
+        }else
         {
-            if(e._minute >= HotelScheduler.Instance.checkInEndMinute)
-            {
-                checkInHours = false;
-            }
-
+            checkInHours = false;
         }
 
     }

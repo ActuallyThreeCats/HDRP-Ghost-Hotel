@@ -77,7 +77,7 @@ public class WanderState : State
         Vector3 result;
         if(RandomNavemeshLocation(10,guest, out result))
         {
-            Debug.Log("SetNavmeshLocation");
+            //Debug.Log("SetNavmeshLocation");
             Debug.DrawRay(result, Vector3.up, Color.blue, 1.0f);
             guest.SetWaypoint(result);
             guest.agent.SetDestination(guest.GetWaypoint());
