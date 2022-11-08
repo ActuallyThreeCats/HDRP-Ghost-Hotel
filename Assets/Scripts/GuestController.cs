@@ -11,15 +11,19 @@ public class GuestController : MonoBehaviour
     [SerializeField] private int money;
     private int maxMoney = 9999;
     [SerializeField] private Vector3 waypoint;
-    [SerializeField] public bool isCheckedIn;
+    public bool isCheckedIn;
     [SerializeField] private Transform target;
+    public RoomInfo roomInfo;
     public bool isWandering = false;
     public bool isIdle = false;
+
+    private int daysStaying;
 
 
     //add geter/seter for this later
     public float timeToWait = 4f;
     public float currentTime;
+    public Collider targetCollider;
 
 
     State currentState;
@@ -29,15 +33,20 @@ public class GuestController : MonoBehaviour
     public RoomState roomState = new RoomState();
     public BreakfastState breakfastState = new BreakfastState();
     public WanderState wanderState = new WanderState();
+    public CoffeeState coffeeState = new CoffeeState();
+    public VendingMachineState vendingMachineState = new VendingMachineState();
+    public IceMachineState iceMachineState = new IceMachineState();
+    public CheckOutState checkoutState = new CheckOutState();
+    public HikingState hikingState = new HikingState();
 
     private void OnEnable()
     {
         agent = GetComponent<NavMeshAgent>();
         currentState = arrivalState;
-        currentState.EnterState(this);
         agent.stoppingDistance = 0;
         target = GameObject.FindGameObjectWithTag("Player").transform;
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        currentState.EnterState(this);
        
     }
 
@@ -45,7 +54,7 @@ public class GuestController : MonoBehaviour
     {
         return guestID;
     }
-
+   
     public void SetGuestID(int amt)
     {
         if(GuestManager.Instance.totalGuests.Count == 0)
@@ -111,7 +120,13 @@ public class GuestController : MonoBehaviour
             money = amt;
         }
     }
-
+    public void SetScheduledDays(int amt)
+    {
+        Debug.Log("scheduled " + amt + " days");
+        if(amt < roomInfo.GetMaxDays())
+        daysStaying = amt;
+        roomInfo.SetDaysScheduled(daysStaying);
+    }
 
 
     public Vector3 GetWaypoint()
@@ -155,5 +170,18 @@ public class GuestController : MonoBehaviour
     {
         currentState = state;
         state.EnterState(this);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("HikingPathExit"))
+        {
+            targetCollider = other;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        targetCollider = null;
     }
 }
