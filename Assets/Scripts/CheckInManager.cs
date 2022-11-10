@@ -36,14 +36,14 @@ public class CheckInManager : MonoBehaviour
 
     public void StartCheckInState(GuestController guest)
     {
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         isCheckingGuestIn = true;
         firstPersonPriority = input.firstPerson.Priority;
         thirdPersonPriority = input.thirdPerson.Priority;
         
-        input.firstPerson.Priority = 1;
-        input.thirdPerson.Priority = 1;
-        deskCam.Priority = 2;
+
+        deskCam.Priority = 3;
         ID.SetActive(true);
        
         signatureText.text = guest.guestName;
@@ -53,19 +53,19 @@ public class CheckInManager : MonoBehaviour
 
     public void EndCheckInState()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         isCheckingGuestIn = false;
         ID.SetActive(false);
         if(firstPersonPriority > thirdPersonPriority)
         {
-            input.firstPerson.Priority = 2;
-            input.thirdPerson.Priority = 1;
-            deskCam.Priority = 1;
+
+            deskCam.Priority = 0;
         }
         if(thirdPersonPriority > firstPersonPriority)
         {
-            input.firstPerson.Priority = 1;
-            input.thirdPerson.Priority = 2;
-            deskCam.Priority = 1;
+
+            deskCam.Priority = 0;
         }
     }
 }

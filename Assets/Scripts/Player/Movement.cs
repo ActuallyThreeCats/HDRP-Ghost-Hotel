@@ -24,6 +24,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private int iterationsPerFrame;
     NavMeshBuildSettings buildSettings;
 
+
+
     private void Awake()
     {
         buildSettings = new NavMeshBuildSettings();

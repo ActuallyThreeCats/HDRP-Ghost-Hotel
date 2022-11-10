@@ -28,7 +28,7 @@ public class GuestSpawner : MonoBehaviour
         if(timeProgressor.timeOfDay > HotelScheduler.Instance.checkInTime && timeProgressor.timeOfDay < HotelScheduler.Instance.checkInEndTime)
         {
             checkInHours = true;
-            Debug.Log(checkInHours);
+            //Debug.Log(checkInHours);
         }
         else
         {
