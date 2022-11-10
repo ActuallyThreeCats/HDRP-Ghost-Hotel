@@ -24,6 +24,9 @@ public class CheckInState : State
         if (guest.agent.remainingDistance < 0.1f)
         {
             CheckInManager.Instance.inUse = true;
+            CheckInManager.Instance.signatureText.text = guest.guestName;
+            CheckInManager.Instance.nameOnIDText.text = guest.guestName;
+            CheckInManager.Instance.ageText.text = guest.GetGuestAge().ToString();
         }
     }
 

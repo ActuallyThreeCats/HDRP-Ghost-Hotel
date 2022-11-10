@@ -27,8 +27,23 @@ public class CheckInComputer : MonoBehaviour
     public TextMeshProUGUI signatureInput;
     public TextMeshProUGUI dueAmt;
 
+    [Space]
+    [Header("Buttons")]
+    public Button idName;
+    public Button idAge;
+    public Button inputName;
+    public Button inputAge;
+    public Button signature;
 
+    private TextMeshProUGUI signatureText;
 
+    private enum CheckInButton
+    {
+        Null,
+        Name,
+        Age
+    }
+    private CheckInButton checkInButton;
 
 
     PlayerControls controls;
@@ -40,10 +55,38 @@ public class CheckInComputer : MonoBehaviour
     }
     private void Start()
     {
+        checkInButton = CheckInButton.Null;
         controls = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>().controls;
         actions = controls.Default;
         actions.Cancel.performed += Cancel_performed;
+        signatureText = signature.GetComponentInChildren<TextMeshProUGUI>();
+
         
+        idName.onClick.AddListener(delegate 
+        {
+            InputName();
+        });
+
+        inputName.onClick.AddListener(delegate 
+        {
+            InputName();
+        });
+
+        idAge.onClick.AddListener(delegate
+        {
+            InputAge();
+        });
+
+        inputAge.onClick.AddListener(delegate
+        {
+            InputAge();
+        });
+
+        signature.onClick.AddListener(delegate
+        {
+            InputSignature();
+        });
+
 
     }
 
@@ -57,6 +100,18 @@ public class CheckInComputer : MonoBehaviour
         if (CheckInManager.Instance.isCheckingGuestIn)
         {
             UpdateRooms();
+        }
+        if(CheckInManager.Instance.guestsInQueue.Count > 0)
+        {
+            if(signatureText.text == CheckInManager.Instance.guestsInQueue[0].guestName)
+            {
+                confirm.interactable = true;
+            }
+            else
+            {
+                confirm.interactable = false;
+            }
+
         }
     }
     private void UpdateRooms()
@@ -76,29 +131,41 @@ public class CheckInComputer : MonoBehaviour
 
     public void CheckInRoom()
     {
+        if(signature != null)
+        {
+            if (GuestManager.Instance.occupants.Count == VacancyManager.Instance.roomInfo.Count)
 
+            {
+                GuestManager.Instance.totalGuests.Remove(CheckInManager.Instance.guestsInQueue[0]);
+                CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
+                Destroy(CheckInManager.Instance.guestsInQueue[0].gameObject);
+                CheckInManager.Instance.inUse = false;
+                CheckInManager.Instance.isTargeted = false;
+            }
+            else
+            {
+                Debug.Log("Checking in attempt");
+                roomInfo.Patron = CheckInManager.Instance.guestsInQueue[0].gameObject;
+                roomInfo.SetDaysScheduled(CheckInManager.Instance.guestsInQueue[0].GetScheduledDays());
+                CheckInManager.Instance.guestsInQueue[0].SwitchState(CheckInManager.Instance.guestsInQueue[0].roomState);
+                CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
+                CheckInManager.Instance.guestsInQueue.TrimExcess();
+                CheckInManager.Instance.inUse = false;
+                CheckInManager.Instance.isTargeted = false;
+
+
+                inputAge.GetComponentInChildren<TextMeshProUGUI>().text = null;
+                inputName.GetComponentsInChildren<TextMeshProUGUI>()[0].text = null;
+                inputName.GetComponentsInChildren<TextMeshProUGUI>()[1].text = null;
+                signature.GetComponentInChildren<TextMeshProUGUI>().text = null;
+                dueAmt.text = "Due :";
+                roomInfoPanel.SetActive(false);
+
+            }
+
+
+        }
         
-        if (GuestManager.Instance.occupants.Count == VacancyManager.Instance.roomInfo.Count)
-
-        {
-            GuestManager.Instance.totalGuests.Remove(CheckInManager.Instance.guestsInQueue[0]);
-            Destroy(CheckInManager.Instance.guestsInQueue[0].gameObject);
-            CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
-            CheckInManager.Instance.inUse = false;
-            CheckInManager.Instance.isTargeted = false;
-        }
-        else
-        {
-            Debug.Log("Checking in attempt");
-            roomInfo.Patron = CheckInManager.Instance.guestsInQueue[0].gameObject;
-            roomInfo.SetDaysScheduled(CheckInManager.Instance.guestsInQueue[0].GetScheduledDays());
-            CheckInManager.Instance.guestsInQueue[0].SwitchState(CheckInManager.Instance.guestsInQueue[0].roomState);
-            CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
-            CheckInManager.Instance.inUse = false;
-            CheckInManager.Instance.isTargeted = false;
-
-
-        }
 
     }
 
@@ -108,7 +175,7 @@ public class CheckInComputer : MonoBehaviour
        
         for (int i = 0; i < rooms.Count; i++)
         {
-            Debug.Log("Running Loop");
+            //Debug.Log("Running Loop");
             if(rooms[i].name == roomName)
             {
                 if (rooms[i].occupied)
@@ -159,5 +226,44 @@ public class CheckInComputer : MonoBehaviour
             }
         }
 
+    }
+
+    private void InputName()
+    {
+        if (checkInButton == CheckInButton.Name)
+        {
+            string[] nameSplit = CheckInManager.Instance.guestsInQueue[0].guestName.Split(" ");
+            firstNameInput.text = nameSplit[0];
+            lastNameInput.text = nameSplit[1];
+        }
+        else
+        {
+            checkInButton = CheckInButton.Name;
+
+
+        }
+    }
+
+    private void InputAge()
+    {
+        if (checkInButton == CheckInButton.Age)
+        {
+            ageInput.text = CheckInManager.Instance.guestsInQueue[0].GetGuestAge().ToString();
+        }
+        else
+        {
+            checkInButton = CheckInButton.Age;
+        }
+    }
+
+    private void InputSignature()
+    {
+        if(ageInput.text != null)
+        {
+            if(firstNameInput.text != null)
+            {
+                signatureInput.text = firstNameInput.text + " " + lastNameInput.text;
+            }
+        }
     }
 }
