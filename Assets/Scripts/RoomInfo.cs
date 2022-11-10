@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 [System.Serializable]
 public class RoomInfo : MonoBehaviour
@@ -15,11 +15,13 @@ public class RoomInfo : MonoBehaviour
     [SerializeField] private int daysScheduled;
     [SerializeField] private int daysRemaining;
     [SerializeField] private int maxDays = 4;
+    [SerializeField] public Button checkInButton; // make getter/setter for this later
 
     private void Start()
     {
-        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
-        timeManager.OnDateChangeOnly += TimeManager_OnDateChangeOnly;
+
+      //  timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+       // timeManager.OnDateChangeOnly += TimeManager_OnDateChangeOnly;
     }
 
     private void TimeManager_OnDateChangeOnly(object sender, TimeManager.OnDateTimeChangedEventArgs e)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GuestSpawner : MonoBehaviour
 {
-    [SerializeField] private TimeManager timeManager;
+    [SerializeField] private TimeProgressor timeProgressor;
     [SerializeField] private GameObject guestPrefab;
     [SerializeField] private Transform waypoint;
     [SerializeField] private int currentGuests;
@@ -17,27 +17,26 @@ public class GuestSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeManager.OnDateTimeChanged += TimeManager_OnDateTimeChanged;
-    }
+       
 
-    private void TimeManager_OnDateTimeChanged(object sender, TimeManager.OnDateTimeChangedEventArgs e)
-    {
-        //fix this to be more dynamic in regards to wrapping time
-        if (e._hour >= HotelScheduler.Instance.checkInStartHour && e._hour < HotelScheduler.Instance.checkInEndHour)
-        {
-        
-                checkInHours= true;
-            
-        }else
-        {
-            checkInHours = false;
-        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(timeProgressor.timeOfDay > HotelScheduler.Instance.checkInTime && timeProgressor.timeOfDay < HotelScheduler.Instance.checkInEndTime)
+        {
+            checkInHours = true;
+            Debug.Log(checkInHours);
+        }
+        else
+        {
+            checkInHours = false;
+            Debug.Log(checkInHours);
+        }
+
+
         maxGuests = VacancyManager.Instance.roomInfo.Count;
         if (checkInHours)
         {

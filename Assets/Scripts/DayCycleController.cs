@@ -16,6 +16,10 @@ public class DayCycleController : MonoBehaviour
     [SerializeField] private Light moon;
     [SerializeField] private AnimationCurve starsCurve;
     public bool isStartingGame;
+    public bool isStartingNight;
+    public bool isStartingDay;
+    private bool hasStartedDay;
+    private bool hasStartedNight;
 
     [SerializeField] private Volume skyVolume;
     private PhysicallyBasedSky sky;
@@ -39,8 +43,27 @@ public class DayCycleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        float timeElapsed = timeManager.GetCurrentTickTime();
+        float time = timeManager.GetTimeBetweenTicks();
         UpdateTime();
+
+        if (isStartingDay)
+        {
+            sun.intensity = Mathf.Lerp(0, 15, timeElapsed/time);
+            if(sun.intensity == 15)
+            {
+                isStartingDay = false;
+            }
+        }
+        if (isStartingNight)
+        {
+            moon.intensity = Mathf.Lerp(0, 2.25f, timeElapsed / time);
+            if(moon.intensity == 2.25f)
+            {
+                isStartingNight = false;
+            }
+        }
+
     }
     public void UpdateTime()
     {
@@ -83,16 +106,21 @@ public class DayCycleController : MonoBehaviour
     {
         if (isNight)
         {
-            if(moon.transform.rotation.eulerAngles.x > 180)
+            if(moon.transform.rotation.eulerAngles.x > 180 && !hasStartedDay)
             {
                 StartDay();
+                hasStartedDay = true;
+                hasStartedNight = false;
+
             }
         }
         else
         {
-            if(sun.transform.rotation.eulerAngles.x > 180)
+            if(sun.transform.rotation.eulerAngles.x > 180 && !hasStartedNight)
             {
                 StartNight();
+                hasStartedDay = false;
+                hasStartedNight = true;
             }
         }
     }
@@ -100,15 +128,23 @@ public class DayCycleController : MonoBehaviour
     private void StartDay()
     {
         isNight = false;
+        isStartingDay = true;
         sun.shadows = LightShadows.Soft;
         moon.shadows = LightShadows.None;
+
+        
+        //moon.enabled = false;
+        //sun.enabled = true;
     }
 
     private void StartNight()
     {
         isNight = true;
+        isStartingNight = true;
         sun.shadows = LightShadows.None;
         moon.shadows = LightShadows.Soft;
+        //moon.enabled = true;
+        //sun.enabled = false;
 
     }
 

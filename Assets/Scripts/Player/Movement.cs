@@ -48,42 +48,47 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
-        if (isGrounded)
+        if (!CheckInManager.Instance.isCheckingGuestIn)
         {
-            verticalVelocity.y = 0;
-        }
-
-        if (input.firstPerson.Priority > input.thirdPerson.Priority)
-        {
-            horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * speed;
-
-
-        }else if(input.firstPerson.Priority < input.thirdPerson.Priority)
-        {
-            horizontalVelocity = new Vector3(horizontalInput.x, 0, horizontalInput.y)* speed;
-            horizontalVelocity = cameraMain.forward * horizontalVelocity.z + cameraMain.transform.right * horizontalVelocity.x;
-            horizontalVelocity.y = 0f;
-            if (horizontalInput != Vector2.zero)
+            isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
+            if (isGrounded)
             {
-                float targetAngle = Mathf.Atan2(horizontalInput.x, horizontalInput.y) * Mathf.Rad2Deg + cameraMain.eulerAngles.y;
-                Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotSpeed);
+                verticalVelocity.y = 0;
             }
+
+            if (input.firstPerson.Priority > input.thirdPerson.Priority)
+            {
+                horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * speed;
+
+
+            }
+            else if (input.firstPerson.Priority < input.thirdPerson.Priority)
+            {
+                horizontalVelocity = new Vector3(horizontalInput.x, 0, horizontalInput.y) * speed;
+                horizontalVelocity = cameraMain.forward * horizontalVelocity.z + cameraMain.transform.right * horizontalVelocity.x;
+                horizontalVelocity.y = 0f;
+                if (horizontalInput != Vector2.zero)
+                {
+                    float targetAngle = Mathf.Atan2(horizontalInput.x, horizontalInput.y) * Mathf.Rad2Deg + cameraMain.eulerAngles.y;
+                    Quaternion rotation = Quaternion.Euler(0f, targetAngle, 0f);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * rotSpeed);
+                }
+            }
+
+            controller.Move(horizontalVelocity * Time.deltaTime);
+
+            if (jump && isGrounded)
+            {
+                verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
+                jump = false;
+            }
+
+
+
+            verticalVelocity.y += gravity * Time.deltaTime;
+            controller.Move(verticalVelocity * Time.deltaTime);
         }
-
-        controller.Move(horizontalVelocity * Time.deltaTime);
-    
-        if(jump && isGrounded)
-        {
-            verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
-            jump = false;
-        }
-
-
-
-        verticalVelocity.y += gravity * Time.deltaTime;
-        controller.Move(verticalVelocity * Time.deltaTime);
+        
     }
 
     public void OnJumpPressed()

@@ -50,28 +50,30 @@ public class InteractSystem : MonoBehaviour
         }
 
         if (CheckInManager.Instance.inUse)
-          
-        {
-        
-            if (GuestManager.Instance.occupants.Count == VacancyManager.Instance.roomInfo.Count)
-            
-            {            
-                GuestManager.Instance.totalGuests.Remove(CheckInManager.Instance.guestsInQueue[0]);               
-                Destroy(CheckInManager.Instance.guestsInQueue[0].gameObject);                
-                CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);                
-                CheckInManager.Instance.inUse = false;               
-                CheckInManager.Instance.isTargeted = false;                
-            }            
-            else            
-            {           
-                CheckInManager.Instance.guestsInQueue[0].SwitchState(CheckInManager.Instance.guestsInQueue[0].roomState);                
-                CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
-                CheckInManager.Instance.inUse = false;             
-                CheckInManager.Instance.isTargeted = false;
-                
-            }
 
-            }
-        
+        {
+            CheckInManager.Instance.StartCheckInState(CheckInManager.Instance.guestsInQueue[0]);
+            /*
+                if (GuestManager.Instance.occupants.Count == VacancyManager.Instance.roomInfo.Count)
+
+                {            
+                    GuestManager.Instance.totalGuests.Remove(CheckInManager.Instance.guestsInQueue[0]);               
+                    Destroy(CheckInManager.Instance.guestsInQueue[0].gameObject);                
+                    CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);                
+                    CheckInManager.Instance.inUse = false;               
+                    CheckInManager.Instance.isTargeted = false;                
+                }            
+                else            
+                {           
+                    CheckInManager.Instance.guestsInQueue[0].SwitchState(CheckInManager.Instance.guestsInQueue[0].roomState);                
+                    CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
+                    CheckInManager.Instance.inUse = false;             
+                    CheckInManager.Instance.isTargeted = false;
+
+                }
+
+                }
+            */
+        }
     }
 }

@@ -7,10 +7,12 @@ public class ArrivalState : State
     {
         guest.SetMoney(Random.Range(300, 5000));
         GenerateGuestID(guest);
+        guest.SetGuestAge();
         GuestManager.Instance.totalGuests.Add(guest);
         CheckInManager.Instance.guestsInQueue.Add(guest);
+        GameObject.Find("GuestManager").GetComponent<GuestNamer>().RandomlyGenerateName(out guest.guestName);
 
-       // Debug.Log("Spawned guest with $"+ guest.GetMoney() + " with ID of: " + guest.GetGuestID());
+        // Debug.Log("Spawned guest with $"+ guest.GetMoney() + " with ID of: " + guest.GetGuestID());
     }
 
     public override void UpdateState(GuestController guest)
