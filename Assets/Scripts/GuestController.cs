@@ -145,6 +145,11 @@ public class GuestController : MonoBehaviour
         roomInfo.SetDaysScheduled(daysStaying);
     }
 
+    public int GetScheduledDays()
+    {
+        return daysStaying;
+    }
+
 
     public Vector3 GetWaypoint()
     {

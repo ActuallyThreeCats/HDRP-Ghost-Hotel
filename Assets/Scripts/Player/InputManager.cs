@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
     public AxisState axisState;
 
 
-    PlayerControls controls;
+    public PlayerControls controls;
     PlayerControls.DefaultActions actions;
 
     InteractSystem interactSystem;

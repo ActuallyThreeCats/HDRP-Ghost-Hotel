@@ -35,9 +35,9 @@ public class GuestNamer : MonoBehaviour
                     if (j == lastNameIndex)
                     {
                         lastName = lastNames[j];
-                        //Debug.Log(firstName + " " + lastName);
+                        Debug.Log(firstName + " " + lastName);
                         name = firstName + " " + lastName;
-                        //Debug.Log(name);
+                        Debug.Log(name);
                         break;
                     }
                 }
