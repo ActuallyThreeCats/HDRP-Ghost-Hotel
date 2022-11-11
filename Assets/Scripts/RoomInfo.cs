@@ -18,7 +18,7 @@ public class RoomInfo : MonoBehaviour
 {
     
 
-    private TimeManager timeManager;
+    
     public int roomNumber; //make getter/setter for this later
     [SerializeField] public bool occupied;
     [SerializeField] private int cost;
@@ -30,20 +30,7 @@ public class RoomInfo : MonoBehaviour
     public Button checkInButton; // make getter/setter for this later
     public RoomEnum roomState;
 
-    private void Start()
-    {
-
-      //  timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
-       // timeManager.OnDateChangeOnly += TimeManager_OnDateChangeOnly;
-
-        
-    }
-
-    private void TimeManager_OnDateChangeOnly(object sender, TimeManager.OnDateTimeChangedEventArgs e)
-    {
-        daysRemaining--;
- 
-    }
+   
 
     public List<Transform> GetWayPoints()
     {

@@ -5,8 +5,35 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using System;
 
+public enum Days
+{
+    Sunday = 0,
+    Monday = 1,
+    Tuesday = 2,
+    Wednesday = 3,
+    Thursday = 4,
+    Friday = 5,
+    Saturday = 6
+}
+
+public enum Months
+{
+    Spring = 0,
+    Summer = 1,
+    Fall = 2,
+    Winter = 3,
+}
+
+
 public class TimeProgressor : MonoBehaviour
 {
+    public Days day;
+    public Months month;
+    public int monthLength;
+    public int date = 1;
+    public int dayOfWeek;
+    public int daysInWeek = 7;
+    public int monthInt;
     [Range(0,24)]
     public float timeOfDay;
     public float hour;
@@ -16,8 +43,7 @@ public class TimeProgressor : MonoBehaviour
     public bool twelveHourClock;
     public bool isPM;
     public int hrPM;
-
-
+    public int year =1;
     public float OrbitSpeed = 1.0f;
     public Light sun;
     public Light moon;
@@ -45,29 +71,51 @@ public class TimeProgressor : MonoBehaviour
     {
         timeOfDay += Time.deltaTime * OrbitSpeed;
         
-        if (timeOfDay > dayLength)
-        {
-            // timeOfDay = 0;
-            timeOfDay = timeOfDay % dayLength;
-            Debug.Log(timeOfDay);
-            OnDayChanged?.Invoke(this, new OnTimeChangedEventArgs
-            {
-                _timeOfDay = timeOfDay
-            });
-        }
+
         UpdateTime();
     }
 
     private void OnValidate()
     {
         skyVolume.profile.TryGet(out sky);
-
+        dayOfWeek = (int)day;
         UpdateTime();
     }
 
     private void UpdateTime()
     {
-        //float alpha = timeOfDay / 24.0f;
+        if (timeOfDay > dayLength)
+        {
+            timeOfDay = timeOfDay % dayLength;
+            date++;
+            dayOfWeek++;
+            if (date > monthLength)
+            {
+
+                date = 1;
+                monthInt++;
+                
+                if (monthInt >= 4)
+                {
+                    monthInt = 0;
+                    year++;
+                }
+                month = (Months)monthInt;
+
+            }
+            if (dayOfWeek > daysInWeek-1)
+            {
+                dayOfWeek = 0;
+            }
+            day = (Days)dayOfWeek;
+
+            OnDayChanged?.Invoke(this, new OnTimeChangedEventArgs
+            {
+                _timeOfDay = timeOfDay
+            });
+        }
+
+        
         float alpha = timeOfDay / dayLength;
         float sunRotation = Mathf.Lerp(-90, 270, alpha);
         float moonRotation = sunRotation - 180;
@@ -75,27 +123,31 @@ public class TimeProgressor : MonoBehaviour
         moon.transform.rotation = Quaternion.Euler(moonRotation, 0, 15.4f);
         CheckNightDayTransition();
 
-        //sun.intensity = ((float)((Mathf.Sin(2 * Mathf.PI * timeOfDay) + (Mathf.Sin(6 * Mathf.PI * timeOfDay) / 9) * 0.56) + 0.5));
+        
         sun.intensity = sunCurve.Evaluate(alpha);
 
         sky.spaceEmissionMultiplier.value = starsCurve.Evaluate(alpha) * 8;
         hr = (int)Mathf.Floor(timeOfDay / (dayLength / 24));
         min = (int)Mathf.Floor((timeOfDay / (dayLength / 1440)) % 60);
-        hour = timeOfDay / (dayLength/24);
+        hour = timeOfDay / (dayLength / 24);
         if (twelveHourClock)
         {
             if (hr > 12)
             {
                 hrPM = hr - 12;
             }
-            if(hr <= 12)
+            if (hr <= 12)
             {
                 hrPM = hr;
             }
-
-
-            
+            if (hr == 0 && hr < 1)
+            {
+                hrPM = 12;
+            }
         }
+
+
+
         if (hr >= 12)
         {
             isPM = true;

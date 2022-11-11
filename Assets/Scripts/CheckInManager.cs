@@ -27,6 +27,8 @@ public class CheckInManager : MonoBehaviour
 
     private void Awake()
     {
+        //ID.gameObject.GetComponentInParent<GraphicRaycaster>().enabled = false;
+
         Instance = this;
         ID.SetActive(false);
         computerCanvas.enabled = false;
@@ -39,6 +41,7 @@ public class CheckInManager : MonoBehaviour
 
     public void StartCheckInState(GuestController guest)
     {
+        //ID.gameObject.GetComponentInParent<GraphicRaycaster>().enabled = true;
         computerCanvas.enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -58,6 +61,7 @@ public class CheckInManager : MonoBehaviour
     public void EndCheckInState()
     {
         computerCanvas.enabled = false;
+        //ID.gameObject.GetComponentInParent<GraphicRaycaster>().enabled = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

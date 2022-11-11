@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-enum Months
-{
-    Spring = 1,
-    Summer = 2,
-    Fall = 3,
-    Winter = 4
-}
 
 public class TimeDisplay : MonoBehaviour
 {
@@ -58,9 +51,6 @@ public class TimeDisplay : MonoBehaviour
             timeText.text = timeProgressor.hour.ToString("D2") + ":" + timeProgressor.min.ToString("D2");
         
         }
-
-
-
         if (timeProgressor.isPM && timeProgressor.twelveHourClock)
         {
             pmText.enabled = true;
@@ -69,6 +59,12 @@ public class TimeDisplay : MonoBehaviour
         {
             pmText.enabled = false;
         }
+        yearText.text = "Year: " + timeProgressor.year.ToString("D2");
+        monthText.text = timeProgressor.month.ToString() + " " + timeProgressor.date.ToString();
+
+
+        dayText.text = timeProgressor.day.ToString();
+
 
         //yearText.text = "Year: " + e._year.ToString("D2");
         //Months month = (Months)e._month;
