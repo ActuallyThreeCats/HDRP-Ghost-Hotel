@@ -16,9 +16,9 @@ public enum RoomEnum
 [System.Serializable]
 public class RoomInfo : MonoBehaviour
 {
-    
 
-    
+
+    [SerializeField] private TimeProgressor timeProgressor;
     public int roomNumber; //make getter/setter for this later
     [SerializeField] public bool occupied;
     [SerializeField] private int cost;
@@ -30,7 +30,18 @@ public class RoomInfo : MonoBehaviour
     public Button checkInButton; // make getter/setter for this later
     public RoomEnum roomState;
 
-   
+
+    private void Start()
+    {
+        timeProgressor = GameObject.Find("TimeManager").GetComponent<TimeProgressor>();
+
+        timeProgressor.OnDayChanged += TimeProgressor_OnDayChanged;
+    }
+
+    private void TimeProgressor_OnDayChanged(object sender, TimeProgressor.OnTimeChangedEventArgs e)
+    {
+        daysRemaining--;
+    }
 
     public List<Transform> GetWayPoints()
     {
@@ -54,6 +65,10 @@ public class RoomInfo : MonoBehaviour
     {
         return daysScheduled;
     }
+    public void ResetDaysRemaining()
+    {
+        daysRemaining = daysScheduled;
+    }
 
     public void SetDaysScheduled(int amt)
     {
@@ -61,6 +76,10 @@ public class RoomInfo : MonoBehaviour
         {
             daysScheduled = amt;
             daysRemaining = amt;
+        }
+        else
+        {
+            Debug.LogError("Not enough maxdays");
         }
     }
 
