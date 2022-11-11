@@ -129,44 +129,43 @@ public class GuestScheduler : MonoBehaviour
 
     public void CheckForScheduledActivities()
     {
-
-        //breakfast
-        if(timeProgressor.timeOfDay >= HotelScheduler.Instance.breakfastTime && timeProgressor.timeOfDay < HotelScheduler.Instance.breakfastEndTime && !hasDoneBreakfast)
+        if (guestController.isCheckedIn)
         {
+            if (timeProgressor.timeOfDay >= HotelScheduler.Instance.breakfastTime && timeProgressor.timeOfDay < HotelScheduler.Instance.breakfastEndTime && !hasDoneBreakfast)
+            {
 
                 isScheduledActivity = true;
 
                 int breakfastCheck = Random.Range(1, 4);
                 Debug.Log("Breakfast Check");
-                if(breakfastCheck >1 && !isDoingActivity)
+                if (breakfastCheck > 1 && !isDoingActivity)
                 {
                     guestController.SwitchState(guestController.breakfastState);
                     isDoingActivity = true;
                     hasDoneBreakfast = true;
                 }
 
-        }
-        //Checkout
-        else if(timeProgressor.timeOfDay >= HotelScheduler.Instance.checkOutHour && timeProgressor.timeOfDay <= HotelScheduler.Instance.checkOutHour + 2 && !hasDoneCheckout)
-        {
-            if (guestController.roomInfo != null)
-            {
-                if (guestController.roomInfo.GetDaysRemaining() == 0 || forceCheckout)
-                {
-                    isScheduledActivity = true;
-                    guestController.SwitchState(guestController.checkoutState);
-                    isDoingActivity = true;
-                    hasDoneCheckout = true;
-                    Debug.Log("Ran Checkout State Code");
-                }
-
             }
-        }
+            //Checkout
+            else if (timeProgressor.timeOfDay >= HotelScheduler.Instance.checkOutHour && timeProgressor.timeOfDay <= HotelScheduler.Instance.checkOutHour + 2 && !hasDoneCheckout)
+            {
+                if (guestController.roomInfo != null)
+                {
+                    if (guestController.roomInfo.GetDaysRemaining() == 0 || forceCheckout)
+                    {
+                        isScheduledActivity = true;
+                        guestController.SwitchState(guestController.checkoutState);
+                        isDoingActivity = true;
+                        hasDoneCheckout = true;
+                        Debug.Log("Ran Checkout State Code");
+                    }
 
-        //checkout
-        
-        
-        
+                }
+            }
+
+        }
+        //breakfast
+
     }
 
     public void CheckForActivity()

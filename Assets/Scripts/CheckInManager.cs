@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class CheckInManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class CheckInManager : MonoBehaviour
     public bool isTargeted;
     public bool isCheckingGuestIn;
     public List<GuestController> guestsInQueue = new List<GuestController>();
+    public GraphicRaycaster computerCanvas;
 
     private int firstPersonPriority;
     private int thirdPersonPriority;
@@ -27,6 +29,7 @@ public class CheckInManager : MonoBehaviour
     {
         Instance = this;
         ID.SetActive(false);
+        computerCanvas.enabled = false;
     }
 
     public void Checkout(GuestController guest)
@@ -36,6 +39,7 @@ public class CheckInManager : MonoBehaviour
 
     public void StartCheckInState(GuestController guest)
     {
+        computerCanvas.enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         isCheckingGuestIn = true;
@@ -53,6 +57,8 @@ public class CheckInManager : MonoBehaviour
 
     public void EndCheckInState()
     {
+        computerCanvas.enabled = false;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isCheckingGuestIn = false;

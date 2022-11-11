@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.022191912, g: 0.02416721, b: 0.038292825, a: 1}
+  m_IndirectSpecularColor: {r: 0.99313474, g: 0.69203234, b: 0.63116264, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,9 +303,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -425,7 +425,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -519,15 +519,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f3ba2579bc58f44b72702f4487229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeOfDay: 5
-  hour: 5
+  timeOfDay: 11.7
+  hour: 11.7
   dayLength: 24
-  hr: 5
-  min: 0
+  hr: 11
+  min: 41
   twelveHourClock: 1
   isPM: 0
-  hrPM: 5
-  OrbitSpeed: 0.005
+  hrPM: 11
+  OrbitSpeed: 0.001
   sun: {fileID: 741440796}
   moon: {fileID: 917806220}
   skyVolume: {fileID: 588843841}
@@ -597,7 +597,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  isNight: 1
+  isNight: 0
 --- !u!1 &50706252
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,9 +643,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -765,7 +765,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -887,22 +887,22 @@ PrefabInstance:
     - target: {fileID: 7254441900339127937, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 3.070666
+      value: 1.093823
       objectReference: {fileID: 0}
     - target: {fileID: 7254441900339127937, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.590059
+      value: -3.029485
       objectReference: {fileID: 0}
     - target: {fileID: 7254441900506338331, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 3.070666
+      value: 1.093823
       objectReference: {fileID: 0}
     - target: {fileID: 7254441900506338331, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.590059
+      value: -3.029485
       objectReference: {fileID: 0}
     - target: {fileID: 7254441900774763639, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
@@ -954,6 +954,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.00000000448199
       objectReference: {fileID: 0}
+    - target: {fileID: 7254441901322960945, guid: e4b8760577fae184582f9e7df13002dc,
+        type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 58.74375
+      objectReference: {fileID: 0}
     - target: {fileID: 7254441902009409638, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -977,12 +982,12 @@ PrefabInstance:
     - target: {fileID: 7254441902009409638, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000001657754
+      value: 0.00000013038515
       objectReference: {fileID: 0}
     - target: {fileID: 7254441902009409638, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000013620591
+      value: -0.000000010710209
       objectReference: {fileID: 0}
     - target: {fileID: 7254441902106400720, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
@@ -1062,32 +1067,32 @@ PrefabInstance:
     - target: {fileID: 7254441902281689613, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9999156
+      value: -0.99991554
       objectReference: {fileID: 0}
     - target: {fileID: 7254441902281689613, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.012996732
+      value: 0.012996725
       objectReference: {fileID: 0}
     - target: {fileID: 7254441902281689613, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000017136335
+      value: 0.00000013597308
       objectReference: {fileID: 0}
     - target: {fileID: 7254441902281689613, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000022118911
+      value: 0.0000000017462296
       objectReference: {fileID: 0}
     - target: {fileID: 7254441902462627693, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_FollowOffset.y
-      value: 3.070666
+      value: 1.093823
       objectReference: {fileID: 0}
     - target: {fileID: 7254441902462627693, guid: e4b8760577fae184582f9e7df13002dc,
         type: 3}
       propertyPath: m_FollowOffset.z
-      value: -4.590059
+      value: -3.029485
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4b8760577fae184582f9e7df13002dc, type: 3}
@@ -1267,9 +1272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -1329,7 +1334,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -1364,7 +1369,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -1389,7 +1394,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3468,9 +3473,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -3530,7 +3535,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -3565,7 +3570,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -3590,7 +3595,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4294,7 +4299,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 2
+    m_Level: 1
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -4360,7 +4365,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4411,7 +4416,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741440794}
-  m_LocalRotation: {x: -0.12934929, y: 0.01748871, z: 0.13283992, w: 0.9825052}
+  m_LocalRotation: {x: 0.6726801, y: -0.09094992, z: 0.09838908, w: 0.7277013}
   m_LocalPosition: {x: 0, y: 19.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4464,9 +4469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -4526,7 +4531,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -4561,7 +4566,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -4586,7 +4591,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5141,9 +5146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -5203,7 +5208,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -5238,7 +5243,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -5263,7 +5268,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5358,9 +5363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -5420,7 +5425,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -5455,7 +5460,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -5480,7 +5485,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6095,7 +6100,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 2
+    m_Level: 1
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -6161,7 +6166,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -6212,7 +6217,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917806218}
-  m_LocalRotation: {x: -0.9825052, y: 0.13283992, z: -0.01748871, w: -0.12934929}
+  m_LocalRotation: {x: -0.7277013, y: 0.09838908, z: 0.09094992, w: 0.6726801}
   m_LocalPosition: {x: 0, y: 19.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7430,9 +7435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -7492,7 +7497,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -7527,7 +7532,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -7552,7 +7557,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7717,7 +7722,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 50.553493
+  field of view: 58.74375
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -8097,6 +8102,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114386221}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1127567169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127567170}
+  m_Layer: 0
+  m_Name: StatisticsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1127567170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127567169}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 19905148647267592}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145961925
 GameObject:
   m_ObjectHideFlags: 0
@@ -8891,9 +8927,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -8953,7 +8989,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -8988,7 +9024,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -9013,7 +9049,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9235,9 +9271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -9297,7 +9333,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -9332,7 +9368,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -9357,7 +9393,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -10142,9 +10178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -10204,7 +10240,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -10239,7 +10275,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -10264,7 +10300,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -10492,9 +10528,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -10554,7 +10590,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -10589,7 +10625,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -10614,7 +10650,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -10975,9 +11011,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -11037,7 +11073,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -11072,7 +11108,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -11097,7 +11133,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -11192,9 +11228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -11254,7 +11290,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -11289,7 +11325,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -11314,7 +11350,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -12442,7 +12478,7 @@ GameObject:
   - component: {fileID: 1794720602}
   - component: {fileID: 1794720601}
   - component: {fileID: 1794720600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12616,6 +12652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 73
+      objectReference: {fileID: 0}
+    - target: {fileID: -1440912683676209917, guid: 9a12d64825ae5d048b18d8fd9d6f0843,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.97
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9a12d64825ae5d048b18d8fd9d6f0843,
         type: 3}
@@ -13514,9 +13555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 575.59955
+  m_Intensity: 447.30927
   m_EnableSpotReflector: 1
-  m_LuxAtDistance: 1
+  m_LuxAtDistance: 1.6
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
@@ -13576,7 +13617,7 @@ MonoBehaviour:
   m_ShadowResolution:
     m_Override: 512
     m_UseOverride: 0
-    m_Level: 1
+    m_Level: 0
   m_ShadowDimmer: 1
   m_VolumetricShadowDimmer: 1
   m_ShadowFadeDistance: 10000
@@ -13611,7 +13652,7 @@ MonoBehaviour:
   m_ShadowVariant: 0
   m_ShadowPrecision: 0
   useOldInspector: 0
-  useVolumetric: 1
+  useVolumetric: 0
   featuresFoldout: 1
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
@@ -13636,7 +13677,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 45.804756
+  m_Intensity: 35.595737
   m_Range: 13.68
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -14953,6 +14994,7 @@ Transform:
   - {fileID: 1161928961}
   - {fileID: 2096472697}
   - {fileID: 32620416}
+  - {fileID: 1127567170}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15153,6 +15195,7 @@ MonoBehaviour:
   isTargeted: 0
   isCheckingGuestIn: 0
   guestsInQueue: []
+  computerCanvas: {fileID: 371612352}
 --- !u!1 &4798276034913348478
 GameObject:
   m_ObjectHideFlags: 0
