@@ -41,7 +41,7 @@ public class GridXZ<TGridObject>
         }
 
 
-        Debug.Log(width + " " + height);
+        //Debug.Log(width + " " + height);
 
         //for (int x = 0; x < gridArray.GetLength(0); x++)
         //{

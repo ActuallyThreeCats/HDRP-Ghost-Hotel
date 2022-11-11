@@ -98,6 +98,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BlueprintMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""46ba5238-c4bc-47b6-b3ff-c5f6ed9dbd1a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9a3a4fe-1cc2-4553-ab5a-af3911fe0e62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -320,6 +338,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8ef192a-1df8-4cc1-9413-4afaef9b4e74"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BlueprintMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1953bef-512d-441d-ae30-2fa95ec7b488"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -336,6 +376,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Default_MouseX = m_Default.FindAction("MouseX", throwIfNotFound: true);
         m_Default_MouseY = m_Default.FindAction("MouseY", throwIfNotFound: true);
         m_Default_Cancel = m_Default.FindAction("Cancel", throwIfNotFound: true);
+        m_Default_BlueprintMode = m_Default.FindAction("BlueprintMode", throwIfNotFound: true);
+        m_Default_LeftClick = m_Default.FindAction("LeftClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,6 +445,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_MouseX;
     private readonly InputAction m_Default_MouseY;
     private readonly InputAction m_Default_Cancel;
+    private readonly InputAction m_Default_BlueprintMode;
+    private readonly InputAction m_Default_LeftClick;
     public struct DefaultActions
     {
         private @PlayerControls m_Wrapper;
@@ -415,6 +459,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MouseX => m_Wrapper.m_Default_MouseX;
         public InputAction @MouseY => m_Wrapper.m_Default_MouseY;
         public InputAction @Cancel => m_Wrapper.m_Default_Cancel;
+        public InputAction @BlueprintMode => m_Wrapper.m_Default_BlueprintMode;
+        public InputAction @LeftClick => m_Wrapper.m_Default_LeftClick;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +494,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Cancel.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCancel;
+                @BlueprintMode.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBlueprintMode;
+                @BlueprintMode.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBlueprintMode;
+                @BlueprintMode.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnBlueprintMode;
+                @LeftClick.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnLeftClick;
+                @LeftClick.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnLeftClick;
+                @LeftClick.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnLeftClick;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -476,6 +528,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @BlueprintMode.started += instance.OnBlueprintMode;
+                @BlueprintMode.performed += instance.OnBlueprintMode;
+                @BlueprintMode.canceled += instance.OnBlueprintMode;
+                @LeftClick.started += instance.OnLeftClick;
+                @LeftClick.performed += instance.OnLeftClick;
+                @LeftClick.canceled += instance.OnLeftClick;
             }
         }
     }
@@ -490,5 +548,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnBlueprintMode(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
     }
 }

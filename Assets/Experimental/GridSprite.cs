@@ -5,27 +5,35 @@ using CodeMonkey.Utils;
 
 public class GridSprite : MonoBehaviour
 {
-    private GridXZ<GridObject> grid;
+    [SerializeField] private GridXZ<GridObject> grid;
     private Mesh mesh;
-
+    [SerializeField] private MeshFilter meshFilter;
 
     private void Awake()
     {
-        mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
+  
     }
     public void SetGrid(GridXZ<GridObject> grid)
     {
         this.grid = grid;
+        mesh = new Mesh();
+        meshFilter.mesh = mesh;
         UpdateTileVisual();
     }
 
     private void OnValidate()
     {
-        mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
-        UpdateTileVisual();
 
+        //mesh = new Mesh();
+        //GetComponent<MeshFilter>().mesh = mesh;
+        //UpdateTileVisual();
+
+    }
+
+    public void EditorRun()
+    {
+
+        UpdateTileVisual();
     }
 
     private void UpdateTileVisual()
