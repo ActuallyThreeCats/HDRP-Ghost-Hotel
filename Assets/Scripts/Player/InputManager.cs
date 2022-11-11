@@ -16,13 +16,13 @@ public class InputManager : MonoBehaviour
     public AxisState axisState;
 
 
-    PlayerControls controls;
+    public PlayerControls controls;
     PlayerControls.DefaultActions actions;
 
     InteractSystem interactSystem;
 
     Vector2 horizontalInput;
-    Vector2 mouseInput;
+    public Vector2 mouseInput;
 
     float thirdPersonX;
     bool isMouse;
@@ -143,16 +143,18 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (thirdPerson.Priority < firstPerson.Priority)
+        if (!CheckInManager.Instance.isCheckingGuestIn)
         {
-            mouseLook.ReceiveInput(mouseInput, isMouse);
+            if (thirdPerson.Priority < firstPerson.Priority)
+            {
+                mouseLook.ReceiveInput(mouseInput, isMouse);
             
-        }else if(thirdPerson.Priority > firstPerson.Priority)
-        {
+            }else if(thirdPerson.Priority > firstPerson.Priority)
+            {
 
-            thirdPersonCam.ReceiveInput(mouseInput);
+                thirdPersonCam.ReceiveInput(mouseInput, isMouse);
+            }
+            movement.ReceiveInput(horizontalInput);
         }
-        movement.ReceiveInput(horizontalInput);
     }
 }

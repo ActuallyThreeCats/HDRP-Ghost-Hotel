@@ -41,6 +41,8 @@ public class HikingState : State
             if(guest.targetCollider != null)
             {
                 guest.GetComponent<GuestScheduler>().isDoingActivity = false;
+                distanceTravelled = 0;
+                isHiking = false;
             }
       
             

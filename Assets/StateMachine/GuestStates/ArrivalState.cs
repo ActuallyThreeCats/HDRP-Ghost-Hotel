@@ -7,10 +7,18 @@ public class ArrivalState : State
     {
         guest.SetMoney(Random.Range(300, 5000));
         GenerateGuestID(guest);
+        guest.SetGuestAge();
+        GameObject.Find("GuestManager").GetComponent<GuestNamer>().RandomlyGenerateName(out guest.guestName);
         GuestManager.Instance.totalGuests.Add(guest);
         CheckInManager.Instance.guestsInQueue.Add(guest);
+        if(guest.guestName == null){
+            GuestManager.Instance.totalGuests.Remove(guest);
+            CheckInManager.Instance.guestsInQueue.Remove(guest);
+            GameObject.Destroy(guest.gameObject);
+            
+        }
 
-       // Debug.Log("Spawned guest with $"+ guest.GetMoney() + " with ID of: " + guest.GetGuestID());
+        // Debug.Log("Spawned guest with $"+ guest.GetMoney() + " with ID of: " + guest.GetGuestID());
     }
 
     public override void UpdateState(GuestController guest)

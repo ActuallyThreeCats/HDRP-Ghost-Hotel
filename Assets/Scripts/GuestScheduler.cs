@@ -6,7 +6,7 @@ using UnityEngine;
 public class GuestScheduler : MonoBehaviour
 {
     [SerializeField] bool isHoliday;
-   private TimeManager timeManager;
+    private TimeProgressor timeProgressor;
     //[SerializeField] private bool isStartingActivity;
     public bool isDoingActivity = false;
     //private bool isResettingActivity;
@@ -17,8 +17,7 @@ public class GuestScheduler : MonoBehaviour
     public bool isScheduledActivity;
     [SerializeField] private bool hasDoneBreakfast;
     [SerializeField] private bool hasDoneCheckout;
-    private int hour;
-    private int minute;
+    private float time;
     [SerializeField] private bool forceCheckout;
 
 
@@ -89,36 +88,30 @@ public class GuestScheduler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
-        timeManager.OnDateTimeChanged += TimeManager_OnDateTimeChanged;
+        timeProgressor = GameObject.Find("TimeManager").GetComponent<TimeProgressor>();
+        timeProgressor.OnDayChanged += TimeProgressor_OnDayChanged;
         guestController = gameObject.GetComponent<GuestController>();
+    }
+
+
+    private void TimeProgressor_OnDayChanged(object sender, TimeProgressor.OnTimeChangedEventArgs e)
+    {
+        hasDoneCheckout = false;
+        hasDoneBreakfast = false;
     }
 
     private void OnDisable()
     {
-        timeManager.OnDateTimeChanged -= TimeManager_OnDateTimeChanged;
-    }
-
-    private void TimeManager_OnDateTimeChanged(object sender, TimeManager.OnDateTimeChangedEventArgs e)
-    {
-        if (gameObject.GetComponent<GuestController>().isCheckedIn )
-        {
-            hour = e._hour;
-            minute = e._minute;
-        }
-        if (hour ==0 && minute == 0)
-        {
-            hasDoneCheckout = false;
-            hasDoneBreakfast = false;
-        }
+        timeProgressor.OnDayChanged -= TimeProgressor_OnDayChanged;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+
+ 
         
-        CheckForScheduledActivities(hour, minute);
+        CheckForScheduledActivities();
 
         
         if (!isScheduledActivity)
@@ -134,46 +127,45 @@ public class GuestScheduler : MonoBehaviour
 
     }
 
-    public void CheckForScheduledActivities(int hour, int minute)
+    public void CheckForScheduledActivities()
     {
-
-        //breakfast
-        if(hour >= HotelScheduler.Instance.breakfastStartHour && hour < HotelScheduler.Instance.breakfastEndHour && !hasDoneBreakfast)
+        if (guestController.isCheckedIn)
         {
+            if (timeProgressor.timeOfDay >= HotelScheduler.Instance.breakfastTime && timeProgressor.timeOfDay < HotelScheduler.Instance.breakfastEndTime && !hasDoneBreakfast)
+            {
 
                 isScheduledActivity = true;
 
                 int breakfastCheck = Random.Range(1, 4);
                 Debug.Log("Breakfast Check");
-                if(breakfastCheck >1 && !isDoingActivity)
+                if (breakfastCheck > 1 && !isDoingActivity)
                 {
                     guestController.SwitchState(guestController.breakfastState);
                     isDoingActivity = true;
                     hasDoneBreakfast = true;
                 }
 
-        }
-        //Checkout
-        else if(hour >= HotelScheduler.Instance.checkOutHour && hour <= HotelScheduler.Instance.checkOutHour + 2 && !hasDoneCheckout)
-        {
-            if (guestController.roomInfo != null)
-            {
-                if (guestController.roomInfo.GetDaysRemaining() == 0 || forceCheckout)
-                {
-                    isScheduledActivity = true;
-                    guestController.SwitchState(guestController.checkoutState);
-                    isDoingActivity = true;
-                    hasDoneCheckout = true;
-                    Debug.Log("Ran Checkout State Code");
-                }
-
             }
-        }
+            //Checkout
+            else if (timeProgressor.timeOfDay >= HotelScheduler.Instance.checkOutHour && timeProgressor.timeOfDay <= HotelScheduler.Instance.checkOutHour + 2 && !hasDoneCheckout)
+            {
+                if (guestController.roomInfo != null)
+                {
+                    if (guestController.roomInfo.GetDaysRemaining() == 0 || forceCheckout)
+                    {
+                        isScheduledActivity = true;
+                        guestController.SwitchState(guestController.checkoutState);
+                        isDoingActivity = true;
+                        hasDoneCheckout = true;
+                        Debug.Log("Ran Checkout State Code");
+                    }
 
-        //checkout
-        
-        
-        
+                }
+            }
+
+        }
+        //breakfast
+
     }
 
     public void CheckForActivity()

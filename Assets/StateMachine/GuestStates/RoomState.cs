@@ -5,31 +5,36 @@ using Crafty.Systems.StateMachine;
 
 public class RoomState : State
 {
+    RoomInfo roomInfo;
+    bool infoCollected;
     public override void EnterState(GuestController guest)
     {
 
-        //Update this to be returnable later
-        for (int i = 0; i < VacancyManager.Instance.roomInfo.Count; i++)
-        {
-            if (!VacancyManager.Instance.roomInfo[i].occupied)
-            {
 
-                VacancyManager.Instance.roomInfo[i].occupied = true;
-                guest.SetWaypoint(VacancyManager.Instance.roomInfo[i].GetWayPoints()[0].position);
-                guest.agent.SetDestination(guest.GetWaypoint());
+
+
+        roomInfo = CheckInComputer.Instance.roomInfo;
+
+                roomInfo.occupied = true;
+                //guest.SetWaypoint(roomInfo.GetWayPoints()[0].position);
+                Debug.Log(guest.transform.position);
+                guest.agent.SetDestination(roomInfo.transform.position);
                 GuestManager.Instance.occupants.Add(guest);
-                guest.SubtractMoney(VacancyManager.Instance.roomInfo[i].GetRoomCost());
-                MoneyManager.Instance.AddToHotelBank(VacancyManager.Instance.roomInfo[i].GetRoomCost());
-                guest.roomInfo = VacancyManager.Instance.roomInfo[i];
+                guest.SubtractMoney(roomInfo.GetRoomCost());
+                MoneyManager.Instance.AddToHotelBank(roomInfo.GetRoomCost());
+                guest.roomInfo = roomInfo;
                 guest.SetScheduledDays(Random.Range(1, guest.roomInfo.GetMaxDays() + 1));
-                break;
-            }
-        }
+    
+              
+           
+        
     }
 
     public override void UpdateState(GuestController guest)
     {
-        if (guest.agent.remainingDistance < 0.1f)
+       // Debug.Log(guest.agent.remainingDistance);
+
+        if (guest.agent.remainingDistance <= guest.agent.stoppingDistance && !guest.agent.pathPending)
         {
             guest.isCheckedIn = true;
             Debug.Log(guest.GetGuestID() + " is Checked In" );

@@ -5,15 +5,24 @@ using UnityEngine.AI;
 using Crafty.Systems.StateMachine;
 public class GuestController : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    [SerializeField] private string guestName;
+    [Header("Guest Identification")]
     [SerializeField] private int guestID;
+    public string guestName; //make getter/setter for names
+    //public string guestLastName;
+    [SerializeField] private int age;
+
+    [Space]
+    [Header("Guest Finances")]
     [SerializeField] private int money;
-    private int maxMoney = 9999;
+    [SerializeField] private int maxMoney = 9999;
+    private Transform target;
+    public RoomInfo roomInfo;
+
+    [Space]
+    [Header("AI")]
+    public NavMeshAgent agent;
     [SerializeField] private Vector3 waypoint;
     public bool isCheckedIn;
-    [SerializeField] private Transform target;
-    public RoomInfo roomInfo;
     public bool isWandering = false;
     public bool isIdle = false;
 
@@ -75,8 +84,16 @@ public class GuestController : MonoBehaviour
             
             }
         }
+    }
 
-        
+    public int GetGuestAge()
+    {
+        return age;
+    }
+
+    public void SetGuestAge()
+    {
+        age = Random.Range(20, 71);
     }
 
     public int GetMoney()
@@ -126,6 +143,11 @@ public class GuestController : MonoBehaviour
         if(amt < roomInfo.GetMaxDays())
         daysStaying = amt;
         roomInfo.SetDaysScheduled(daysStaying);
+    }
+
+    public int GetScheduledDays()
+    {
+        return daysStaying;
     }
 
 

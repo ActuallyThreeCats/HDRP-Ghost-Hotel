@@ -9,6 +9,7 @@ TagManager:
   - Interactable
   - HikingPath
   - HikingPathExit
+  - Room
   layers:
   - Default
   - TransparentFX
