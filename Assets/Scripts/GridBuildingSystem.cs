@@ -16,14 +16,14 @@ public class GridBuildingSystem : MonoBehaviour
     private void Start()
     {
         CreateGrid();
-        inputManager.controls.Default.LeftClick.performed += LeftClick_performed;
+        //inputManager.controls.Default.LeftClick.performed += LeftClick_performed;
 
     }
 
-    private void LeftClick_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        throw new NotImplementedException();
-    }
+    //private void LeftClick_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
     private void OnValidate()
     {
