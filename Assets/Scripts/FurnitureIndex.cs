@@ -8,6 +8,9 @@ public class FurnitureIndex : MonoBehaviour
 
     public List<GameObject> furniturePrefabs = new List<GameObject>();
 
+    [SerializeField]
+    public List<GridXZ<GridObject>> grids = new List<GridXZ<GridObject>>();
+
     private void Awake()
     {
         Instance = this;

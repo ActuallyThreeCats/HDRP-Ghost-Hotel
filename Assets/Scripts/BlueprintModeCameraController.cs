@@ -54,7 +54,7 @@ public class BlueprintModeCameraController : MonoBehaviour
         if(obj.ReadValue<Vector2>().y != 0)
         {
          int y = 0;
-            Debug.Log(obj.ReadValue<Vector2>().y);
+            //Debug.Log(obj.ReadValue<Vector2>().y);
             if(obj.ReadValue<Vector2>().y > 0)
             {
                 y = 1;
@@ -63,7 +63,7 @@ public class BlueprintModeCameraController : MonoBehaviour
             {
                 y = -1;
             }
-            Debug.Log(y);
+            //Debug.Log(y);
             newZoom += (y * zoomAmount);
 
             if(newZoom.y > zoomClamp.y)
@@ -126,19 +126,19 @@ public class BlueprintModeCameraController : MonoBehaviour
 
             if (inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().x != 0)
             {
-                Debug.Log(inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().x);
+                //Debug.Log(inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().x);
                 newPosition += (transform.right * (inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().x * movementSpeed));
             }
             if (inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().y != 0)
             {
-                Debug.Log(inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().y);
+                //Debug.Log(inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().y);
 
                 newPosition += (transform.forward * (inputManager.controls.BlueprintMap.Move.ReadValue<Vector2>().y * movementSpeed));
             }
 
             if(inputManager.controls.BlueprintMap.RotateCamera.ReadValue<Vector2>().x != 0)
             {
-                Debug.Log(inputManager.controls.BlueprintMap.RotateCamera.ReadValue<Vector2>().x + ", " + inputManager.controls.BlueprintMap.RotateCamera.ReadValue<Vector2>().y);
+                //Debug.Log(inputManager.controls.BlueprintMap.RotateCamera.ReadValue<Vector2>().x + ", " + inputManager.controls.BlueprintMap.RotateCamera.ReadValue<Vector2>().y);
                 newRotation *= Quaternion.Euler(Vector3.up * (inputManager.controls.BlueprintMap.RotateCamera.ReadValue<Vector2>().x * rotationAmount));
             }
 

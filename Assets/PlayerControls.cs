@@ -409,6 +409,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Place"",
+                    ""type"": ""Button"",
+                    ""id"": ""fdc343c5-404f-4be9-93d1-6f59b55a86d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -697,6 +706,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c481c81d-32a0-47bc-b487-9c99c1aaea90"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -723,6 +743,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_BlueprintMap_RotateCamera = m_BlueprintMap.FindAction("RotateCamera", throwIfNotFound: true);
         m_BlueprintMap_ModifySpeed = m_BlueprintMap.FindAction("ModifySpeed", throwIfNotFound: true);
         m_BlueprintMap_Zoom = m_BlueprintMap.FindAction("Zoom", throwIfNotFound: true);
+        m_BlueprintMap_Place = m_BlueprintMap.FindAction("Place", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -886,6 +907,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_BlueprintMap_RotateCamera;
     private readonly InputAction m_BlueprintMap_ModifySpeed;
     private readonly InputAction m_BlueprintMap_Zoom;
+    private readonly InputAction m_BlueprintMap_Place;
     public struct BlueprintMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -897,6 +919,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @RotateCamera => m_Wrapper.m_BlueprintMap_RotateCamera;
         public InputAction @ModifySpeed => m_Wrapper.m_BlueprintMap_ModifySpeed;
         public InputAction @Zoom => m_Wrapper.m_BlueprintMap_Zoom;
+        public InputAction @Place => m_Wrapper.m_BlueprintMap_Place;
         public InputActionMap Get() { return m_Wrapper.m_BlueprintMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -927,6 +950,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Zoom.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnZoom;
+                @Place.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
+                @Place.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
+                @Place.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
             }
             m_Wrapper.m_BlueprintMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -952,6 +978,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
+                @Place.started += instance.OnPlace;
+                @Place.performed += instance.OnPlace;
+                @Place.canceled += instance.OnPlace;
             }
         }
     }
@@ -977,5 +1006,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRotateCamera(InputAction.CallbackContext context);
         void OnModifySpeed(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnPlace(InputAction.CallbackContext context);
     }
 }

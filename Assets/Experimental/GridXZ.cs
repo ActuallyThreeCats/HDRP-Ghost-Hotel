@@ -4,6 +4,7 @@ using UnityEngine;
 using CodeMonkey.Utils;
 using System;
 
+[Serializable]
 public class GridXZ<TGridObject>
 {
     public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
@@ -17,7 +18,7 @@ public class GridXZ<TGridObject>
     private int width;
     private int height;
     private float cellSize;
-    private TGridObject[,] gridArray;
+    public TGridObject[,] gridArray;
     private TextMesh[,] debugTextArray;
     private Vector3 originPosition;
 
@@ -56,10 +57,10 @@ public class GridXZ<TGridObject>
         //Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.white, 1f);
         //Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 1f);
 
-        //OnGridObjectChanged += (object sender, OnGridObjectChangedEventArgs eventArgs) =>
-        //{
-        //    debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
-        //};
+        OnGridObjectChanged += (object sender, OnGridObjectChangedEventArgs eventArgs) =>
+        {
+            debugTextArray[eventArgs.x, eventArgs.z].text = gridArray[eventArgs.x, eventArgs.z]?.ToString();
+        };
 
     }
 
@@ -81,7 +82,7 @@ public class GridXZ<TGridObject>
     {
         return new Vector3(x,0, z) * cellSize + originPosition;
     }
-    private void GetXZ(Vector3 worldPosition, out int x, out int z)
+    public void GetXZ(Vector3 worldPosition, out int x, out int z)
     {
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         //Debug.Log("x = " + x);
@@ -137,4 +138,6 @@ public class GridXZ<TGridObject>
         GetXZ(worldPosition, out x, out z);
         return GetGridObject(x, z);
     }
+
+   
 }
