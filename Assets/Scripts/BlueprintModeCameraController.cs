@@ -79,14 +79,18 @@ public class BlueprintModeCameraController : MonoBehaviour
 
     private void BlueprintMode_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        isOpeningBlueprintMode = true;
-        //isInBlueprintMode = true;
-        cam.Priority = 3;
-        isCurrentCamera = true;
-        inputManager.controls.Default.Disable();
-        inputManager.controls.BlueprintMap.Enable();
+        if (!CheckInManager.Instance.isCheckingGuestIn)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            isOpeningBlueprintMode = true;
+            //isInBlueprintMode = true;
+            cam.Priority = 3;
+            isCurrentCamera = true;
+            inputManager.controls.Default.Disable();
+            inputManager.controls.BlueprintMap.Enable();
+
+        }
         
     }
     private void Cancel_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

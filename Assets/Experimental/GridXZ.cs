@@ -20,7 +20,7 @@ public class GridXZ<TGridObject>
     private float cellSize;
     public TGridObject[,] gridArray;
     private TextMesh[,] debugTextArray;
-    private Vector3 originPosition;
+    public Vector3 originPosition;
 
     public GridXZ(int width, int height, float cellSize, Vector3 originPosition, Func<GridXZ<TGridObject>, int, int, TGridObject> createGridObject)
     {

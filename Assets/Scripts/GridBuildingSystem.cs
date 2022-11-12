@@ -59,6 +59,7 @@ public class GridBuildingSystem : MonoBehaviour
         //}
         //    lines.Clear();
         grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, gameObject.transform.position, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
+        Debug.Log(gameObject.transform.position);
         gridSprite.SetGrid(grid);
         FurnitureIndex.Instance.grids.Add(grid);
 

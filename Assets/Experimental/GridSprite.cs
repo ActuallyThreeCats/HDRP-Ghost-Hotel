@@ -8,6 +8,7 @@ public class GridSprite : MonoBehaviour
     [SerializeField] private GridXZ<GridObject> grid;
     private Mesh mesh;
     [SerializeField] private MeshFilter meshFilter;
+    [SerializeField] private GridBuildingSystem builder;
 
     private void Awake()
     {
@@ -19,6 +20,10 @@ public class GridSprite : MonoBehaviour
         mesh = new Mesh();
         meshFilter.mesh = mesh;
         UpdateTileVisual();
+       // grid.GetXZ(transform.position, out int x, out int z);
+        //transform.position = grid.originPosition
+        // grid.GetWorldPosition(x,z)-new Vector3(0,1.98f,0);
+
     }
 
     private void OnValidate()
@@ -56,15 +61,7 @@ public class GridSprite : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uvs;
         mesh.triangles = triangles;
-
-    }
-
-
-    public static void CreateEmptyMeshArrays(int quadCount, out Vector3[] vertices, out Vector2[] uvs, out int[] triangles)
-    {
-        vertices = new Vector3[4 * quadCount];
-        uvs = new Vector2[4 * quadCount];
-        triangles = new int[6 * quadCount];
+        transform.position = builder.transform.localPosition;
     }
 
 
