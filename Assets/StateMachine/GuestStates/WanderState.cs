@@ -39,7 +39,7 @@ public class WanderState : State
             if(currentSteps < wanderSteps && guest.currentTime >= guest.timeToWait - 0.5f)
             {
                 currentSteps++;
-                Debug.Log(currentSteps);
+                //Debug.Log(currentSteps);
                 guest.isWandering = false;
                 guest.isIdle = false;
             }

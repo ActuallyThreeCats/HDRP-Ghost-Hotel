@@ -13,6 +13,8 @@ public class InputManager : MonoBehaviour
 
     [SerializeField] public CinemachineVirtualCamera firstPerson;
     [SerializeField] public CinemachineFreeLook thirdPerson;
+    //[SerializeField] public BlueprintModeCameraController blueprintCam;
+
     public AxisState axisState;
 
 
@@ -34,6 +36,7 @@ public class InputManager : MonoBehaviour
         actions = controls.Default;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        controls.Default.Enable();
         //actions.Move.performed += Move_performed;
         actions.Jump.performed += _ => movement.OnJumpPressed();
         actions.Move.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();

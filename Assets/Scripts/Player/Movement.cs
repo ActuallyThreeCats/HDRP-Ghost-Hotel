@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] BlueprintModeCameraController blueprintCam;
     [SerializeField] CharacterController controller;
     [SerializeField] InputManager input;
     [SerializeField] float speed = 11f;
@@ -50,7 +51,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!CheckInManager.Instance.isCheckingGuestIn)
+        if (!CheckInManager.Instance.isCheckingGuestIn && !blueprintCam.isCurrentCamera)
         {
             isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
             if (isGrounded)

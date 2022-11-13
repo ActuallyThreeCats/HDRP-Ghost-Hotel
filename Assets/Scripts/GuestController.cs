@@ -140,8 +140,11 @@ public class GuestController : MonoBehaviour
     public void SetScheduledDays(int amt)
     {
         Debug.Log("scheduled " + amt + " days");
-        if(amt < roomInfo.GetMaxDays())
-        daysStaying = amt;
+        if(amt <= roomInfo.GetMaxDays())
+        {
+            daysStaying = amt;
+
+        }
         roomInfo.SetDaysScheduled(daysStaying);
     }
 

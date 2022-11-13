@@ -21,7 +21,7 @@ public class QueueingState : State
 
         if (!CheckInManager.Instance.isTargeted)
         {
-            Debug.Log("Is not targeted");
+//Debug.Log("Is not targeted");
             for (int i = 0; i < CheckInManager.Instance.guestsInQueue.Count; i++)
             {
                if(i == 0)
@@ -81,7 +81,7 @@ public class QueueingState : State
                     if (i >= 1)
                     {
 
-                        Debug.Log("Moving Guest #" + i);
+                       // Debug.Log("Moving Guest #" + i);
                         Vector3 distanceVector = CheckInManager.Instance.guestsInQueue[i].transform.position - CheckInManager.Instance.guestsInQueue[i - 1].GetComponent<GuestController>().GetWaypoint();
                         //Vector3 distanceVector = guest.transform.position - CheckInManager.Instance.guestsInQueue[i - 1].GetComponent<GuestController>().GetWaypoint();
 

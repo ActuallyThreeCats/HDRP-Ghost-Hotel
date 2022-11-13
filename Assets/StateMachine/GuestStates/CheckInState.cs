@@ -15,18 +15,23 @@ public class CheckInState : State
                 CheckInManager.Instance.isTargeted = true;
             }
         }
-        Debug.Log("Finished CheckIn State");
+       // Debug.Log("Finished CheckIn State");
 
     }
 
     public override void UpdateState(GuestController guest)
     {
-        if (guest.agent.remainingDistance < 0.1f)
+        if (guest.agent.remainingDistance < 0.2f)
         {
             CheckInManager.Instance.inUse = true;
             CheckInManager.Instance.signatureText.text = guest.guestName;
             CheckInManager.Instance.nameOnIDText.text = guest.guestName;
             CheckInManager.Instance.ageText.text = guest.GetGuestAge().ToString();
+            if (CheckInManager.Instance.isCheckingGuestIn)
+            {
+                CheckInManager.Instance.ID.SetActive(true);
+
+            }
         }
     }
 

@@ -26,6 +26,7 @@ public class CheckInComputer : MonoBehaviour
     public TextMeshProUGUI ageInput;
     public TextMeshProUGUI signatureInput;
     public TextMeshProUGUI dueAmt;
+    public TextMeshProUGUI daysRemaining;
 
     [Space]
     [Header("Buttons")]
@@ -97,10 +98,7 @@ public class CheckInComputer : MonoBehaviour
 
     private void Update()
     {
-        if (CheckInManager.Instance.isCheckingGuestIn)
-        {
-            UpdateRooms();
-        }
+
         if(CheckInManager.Instance.guestsInQueue.Count > 0)
         {
             if(signatureText.text == CheckInManager.Instance.guestsInQueue[0].guestName)
@@ -114,17 +112,26 @@ public class CheckInComputer : MonoBehaviour
 
         }
     }
-    private void UpdateRooms()
+    public void UpdateRooms()
     {
         for (int i = 0; i < rooms.Count; i++)
         {
             if (rooms[i].occupied)
             {
-                rooms[i].checkInButton.interactable = false;
+                ColorBlock cb = rooms[i].checkInButton.colors;
+                cb.normalColor = new Color(200, 0, 0);
+                rooms[i].checkInButton.colors = cb;
+
             }
             else
             {
-                rooms[i].checkInButton.interactable = true;
+                rooms[i].roomState = RoomEnum.goodMatch;
+            }
+            if(rooms[i].roomState == RoomEnum.goodMatch)
+            {
+                ColorBlock cb = rooms[i].checkInButton.colors;
+                cb.normalColor = new Color(0, 150, 0);
+                rooms[i].checkInButton.colors = cb;
             }
         }
     }
@@ -133,20 +140,11 @@ public class CheckInComputer : MonoBehaviour
     {
         if(signature != null)
         {
-            if (GuestManager.Instance.occupants.Count == VacancyManager.Instance.roomInfo.Count)
 
-            {
-                GuestManager.Instance.totalGuests.Remove(CheckInManager.Instance.guestsInQueue[0]);
-                CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
-                Destroy(CheckInManager.Instance.guestsInQueue[0].gameObject);
-                CheckInManager.Instance.inUse = false;
-                CheckInManager.Instance.isTargeted = false;
-            }
-            else
-            {
-                Debug.Log("Checking in attempt");
+                //Debug.Log("Checking in attempt");
                 roomInfo.Patron = CheckInManager.Instance.guestsInQueue[0].gameObject;
                 roomInfo.SetDaysScheduled(CheckInManager.Instance.guestsInQueue[0].GetScheduledDays());
+                roomInfo.ResetDaysRemaining();
                 CheckInManager.Instance.guestsInQueue[0].SwitchState(CheckInManager.Instance.guestsInQueue[0].roomState);
                 CheckInManager.Instance.guestsInQueue.Remove(CheckInManager.Instance.guestsInQueue[0]);
                 CheckInManager.Instance.guestsInQueue.TrimExcess();
@@ -160,10 +158,8 @@ public class CheckInComputer : MonoBehaviour
                 signature.GetComponentInChildren<TextMeshProUGUI>().text = null;
                 dueAmt.text = "Due :";
                 roomInfoPanel.SetActive(false);
-
-            }
-
-
+                UpdateRooms();
+            CheckInManager.Instance.ID.SetActive(false);
         }
         
 
@@ -181,15 +177,20 @@ public class CheckInComputer : MonoBehaviour
                 if (rooms[i].occupied)
                 {
                     rooms[i].roomState = RoomEnum.occupied;
+
+                    confirm.interactable = false;
+                    
                 }
                 else
                 {
                     rooms[i].roomState = RoomEnum.goodMatch;
+                    roomNumberText.text = "Room " + rooms[i].roomNumber.ToString();
+                    dueAmt.text = "Due: " + rooms[i].GetRoomCost().ToString();
+                    roomInfo = rooms[i];
+                    daysRemaining.enabled = false;
                 }
                 
-                roomNumberText.text = "Room " + rooms[i].roomNumber.ToString();
-                dueAmt.text = "Due: " + rooms[i].GetRoomCost().ToString();
-                roomInfo = rooms[i];
+
 
 
 
@@ -197,7 +198,16 @@ public class CheckInComputer : MonoBehaviour
                 {
                     case RoomEnum.occupied:
                         reservationText.text = "Occupied";
-
+                        reservationText.GetComponentInParent<Image>().color = Color.red;
+                        inputAge.GetComponentInChildren<TextMeshProUGUI>().text = rooms[i].Patron.GetComponent<GuestController>().GetGuestAge().ToString();
+                        string[] nameSplit = rooms[i].Patron.GetComponent<GuestController>().guestName.Split(" ");
+                        inputName.GetComponentsInChildren<TextMeshProUGUI>()[0].text = nameSplit[0];
+                        inputName.GetComponentsInChildren<TextMeshProUGUI>()[1].text = nameSplit[1];
+                        signature.GetComponentInChildren<TextMeshProUGUI>().text = rooms[i].Patron.GetComponent<GuestController>().guestName;
+                        roomNumberText.text = "Room " + rooms[i].roomNumber.ToString();
+                        dueAmt.text = "Paid: " + rooms[i].GetRoomCost().ToString();
+                        daysRemaining.enabled = true;
+                        daysRemaining.text = "Days Left: " + rooms[i].GetDaysRemaining().ToString();
                         break;
                     case RoomEnum.reserved:
                         reservationText.text = "Reserved";
@@ -213,7 +223,13 @@ public class CheckInComputer : MonoBehaviour
                         break;
                     case RoomEnum.goodMatch:
                         reservationText.text = "Good Match";
-
+                        reservationText.GetComponentInParent<Image>().color = Color.green;
+                        inputAge.GetComponentInChildren<TextMeshProUGUI>().text = null;
+                        inputName.GetComponentsInChildren<TextMeshProUGUI>()[0].text = null;
+                        inputName.GetComponentsInChildren<TextMeshProUGUI>()[1].text = null;
+                        signature.GetComponentInChildren<TextMeshProUGUI>().text = null;
+                        daysRemaining.enabled = false;
+                        dueAmt.text = "Due :";
                         break;
                     case RoomEnum.badMatch:
                         reservationText.text = "Bad Match";
@@ -224,46 +240,64 @@ public class CheckInComputer : MonoBehaviour
                 }
 
             }
+
+            if (!rooms[i].occupied)
+            {
+                rooms[i].roomState = RoomEnum.goodMatch;
+            }
+
         }
 
     }
 
     private void InputName()
     {
-        if (checkInButton == CheckInButton.Name)
+        if (!roomInfo.occupied)
         {
-            string[] nameSplit = CheckInManager.Instance.guestsInQueue[0].guestName.Split(" ");
-            firstNameInput.text = nameSplit[0];
-            lastNameInput.text = nameSplit[1];
-        }
-        else
-        {
-            checkInButton = CheckInButton.Name;
+            if (checkInButton == CheckInButton.Name)
+            {
+                string[] nameSplit = CheckInManager.Instance.guestsInQueue[0].guestName.Split(" ");
+                firstNameInput.text = nameSplit[0];
+                lastNameInput.text = nameSplit[1];
+            }
+            else
+            {
+                checkInButton = CheckInButton.Name;
 
+
+            }
 
         }
     }
 
     private void InputAge()
     {
-        if (checkInButton == CheckInButton.Age)
+        if (!roomInfo.occupied)
         {
-            ageInput.text = CheckInManager.Instance.guestsInQueue[0].GetGuestAge().ToString();
-        }
-        else
-        {
-            checkInButton = CheckInButton.Age;
+            if (checkInButton == CheckInButton.Age)
+            {
+                ageInput.text = CheckInManager.Instance.guestsInQueue[0].GetGuestAge().ToString();
+            }
+            else
+            {
+                checkInButton = CheckInButton.Age;
+            }
+
         }
     }
 
     private void InputSignature()
     {
-        if(ageInput.text != null)
+        if (!roomInfo.occupied)
         {
-            if(firstNameInput.text != null)
+            if(ageInput.text != null)
             {
-                signatureInput.text = firstNameInput.text + " " + lastNameInput.text;
+                if(firstNameInput.text != null)
+                {
+                    signatureInput.text = firstNameInput.text + " " + lastNameInput.text;
+                }
             }
+
         }
     }
 }

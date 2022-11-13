@@ -27,7 +27,7 @@ public class BreakfastState : State
 
     public override void UpdateState(GuestController guest)
     {
-        if(guest.agent.remainingDistance < 0.5f)
+        if(guest.agent.remainingDistance < 1.3f)
         {
             if (amountEatenTime < eatingTime)
             {

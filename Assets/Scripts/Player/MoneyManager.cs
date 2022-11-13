@@ -127,9 +127,9 @@ public class MoneyManager : MonoBehaviour
     {
         if (amt + hotelBank < maxHotelBank)
         {
-            Debug.Log("Added to Hotel Bank");
+            //Debug.Log("Added to Hotel Bank");
             hotelBank += amt;
-            Debug.Log(hotelBank + " " + amt);
+            //Debug.Log(hotelBank + " " + amt);
             FireHotelBankEvent(hotelBank);
 
 

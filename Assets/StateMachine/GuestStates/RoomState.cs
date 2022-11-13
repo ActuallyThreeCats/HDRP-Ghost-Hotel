@@ -17,13 +17,16 @@ public class RoomState : State
 
                 roomInfo.occupied = true;
                 //guest.SetWaypoint(roomInfo.GetWayPoints()[0].position);
-                Debug.Log(guest.transform.position);
+                //Debug.Log(guest.transform.position);
                 guest.agent.SetDestination(roomInfo.transform.position);
                 GuestManager.Instance.occupants.Add(guest);
                 guest.SubtractMoney(roomInfo.GetRoomCost());
                 MoneyManager.Instance.AddToHotelBank(roomInfo.GetRoomCost());
                 guest.roomInfo = roomInfo;
                 guest.SetScheduledDays(Random.Range(1, guest.roomInfo.GetMaxDays() + 1));
+        Debug.Log(guest.GetScheduledDays());
+                roomInfo.roomState = RoomEnum.occupied;
+        
     
               
            
@@ -37,7 +40,7 @@ public class RoomState : State
         if (guest.agent.remainingDistance <= guest.agent.stoppingDistance && !guest.agent.pathPending)
         {
             guest.isCheckedIn = true;
-            Debug.Log(guest.GetGuestID() + " is Checked In" );
+            //Debug.Log(guest.GetGuestID() + " is Checked In" );
             guest.GetComponent<GuestScheduler>().isDoingActivity = false;
 
         }

@@ -33,7 +33,7 @@ public class GuestSpawner : MonoBehaviour
         else
         {
             checkInHours = false;
-            Debug.Log(checkInHours);
+            //Debug.Log(checkInHours);
         }
 
 

@@ -21,15 +21,19 @@ public class CheckInManager : MonoBehaviour
     public bool isCheckingGuestIn;
     public List<GuestController> guestsInQueue = new List<GuestController>();
     public GraphicRaycaster computerCanvas;
+    public GraphicRaycaster IDCanvas;
 
     private int firstPersonPriority;
     private int thirdPersonPriority;
 
     private void Awake()
     {
+        //ID.gameObject.GetComponentInParent<GraphicRaycaster>().enabled = false;
+
         Instance = this;
         ID.SetActive(false);
         computerCanvas.enabled = false;
+        IDCanvas.enabled = false;
     }
 
     public void Checkout(GuestController guest)
@@ -39,12 +43,14 @@ public class CheckInManager : MonoBehaviour
 
     public void StartCheckInState(GuestController guest)
     {
+        IDCanvas.enabled = true;
         computerCanvas.enabled = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         isCheckingGuestIn = true;
         firstPersonPriority = input.firstPerson.Priority;
         thirdPersonPriority = input.thirdPerson.Priority;
+        CheckInComputer.Instance.UpdateRooms();
         
 
         deskCam.Priority = 3;
@@ -58,6 +64,8 @@ public class CheckInManager : MonoBehaviour
     public void EndCheckInState()
     {
         computerCanvas.enabled = false;
+        IDCanvas.enabled = false;
+        //ID.gameObject.GetComponentInParent<GraphicRaycaster>().enabled = false;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
