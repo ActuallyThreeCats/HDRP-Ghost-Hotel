@@ -6,7 +6,7 @@ public class FurnitureIndex : MonoBehaviour
 {
     public static FurnitureIndex Instance;
 
-    public List<GameObject> furniturePrefabs = new List<GameObject>();
+    public List<FurnitureScriptableObject> furniturePrefabs = new List<FurnitureScriptableObject>();
 
     [SerializeField]
     public List<GridXZ<GridObject>> grids = new List<GridXZ<GridObject>>();

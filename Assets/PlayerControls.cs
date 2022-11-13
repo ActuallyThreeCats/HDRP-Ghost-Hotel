@@ -418,6 +418,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateItem"",
+                    ""type"": ""Value"",
+                    ""id"": ""3186dde2-af7c-4610-a577-6b7bb4e20753"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DeleteItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e30353b-424d-420d-9287-2e441714b5f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -717,6 +735,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Place"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""8d18a342-27a7-4277-8efb-9608383699af"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateItem"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""57b9cb5e-55a8-4227-a737-e636f6d3a3f4"",
+                    ""path"": ""<Keyboard>/comma"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""688b03e2-87c8-4613-a6ea-6dfd02499e3c"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""b001a69b-c978-454d-908c-98daa9b2e848"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteItem"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""64f54385-9686-4d8a-a8dd-eb05aac8d6e6"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""8d189aaa-1e29-418c-adba-0e0d6953ac7f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -744,6 +828,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_BlueprintMap_ModifySpeed = m_BlueprintMap.FindAction("ModifySpeed", throwIfNotFound: true);
         m_BlueprintMap_Zoom = m_BlueprintMap.FindAction("Zoom", throwIfNotFound: true);
         m_BlueprintMap_Place = m_BlueprintMap.FindAction("Place", throwIfNotFound: true);
+        m_BlueprintMap_RotateItem = m_BlueprintMap.FindAction("RotateItem", throwIfNotFound: true);
+        m_BlueprintMap_DeleteItem = m_BlueprintMap.FindAction("DeleteItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -908,6 +994,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_BlueprintMap_ModifySpeed;
     private readonly InputAction m_BlueprintMap_Zoom;
     private readonly InputAction m_BlueprintMap_Place;
+    private readonly InputAction m_BlueprintMap_RotateItem;
+    private readonly InputAction m_BlueprintMap_DeleteItem;
     public struct BlueprintMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -920,6 +1008,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @ModifySpeed => m_Wrapper.m_BlueprintMap_ModifySpeed;
         public InputAction @Zoom => m_Wrapper.m_BlueprintMap_Zoom;
         public InputAction @Place => m_Wrapper.m_BlueprintMap_Place;
+        public InputAction @RotateItem => m_Wrapper.m_BlueprintMap_RotateItem;
+        public InputAction @DeleteItem => m_Wrapper.m_BlueprintMap_DeleteItem;
         public InputActionMap Get() { return m_Wrapper.m_BlueprintMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -953,6 +1043,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Place.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
                 @Place.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
                 @Place.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
+                @RotateItem.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateItem;
+                @RotateItem.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateItem;
+                @RotateItem.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateItem;
+                @DeleteItem.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnDeleteItem;
+                @DeleteItem.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnDeleteItem;
+                @DeleteItem.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnDeleteItem;
             }
             m_Wrapper.m_BlueprintMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -981,6 +1077,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Place.started += instance.OnPlace;
                 @Place.performed += instance.OnPlace;
                 @Place.canceled += instance.OnPlace;
+                @RotateItem.started += instance.OnRotateItem;
+                @RotateItem.performed += instance.OnRotateItem;
+                @RotateItem.canceled += instance.OnRotateItem;
+                @DeleteItem.started += instance.OnDeleteItem;
+                @DeleteItem.performed += instance.OnDeleteItem;
+                @DeleteItem.canceled += instance.OnDeleteItem;
             }
         }
     }
@@ -1007,5 +1109,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnModifySpeed(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
+        void OnRotateItem(InputAction.CallbackContext context);
+        void OnDeleteItem(InputAction.CallbackContext context);
     }
 }
