@@ -6,7 +6,7 @@ public class InteractSystem : MonoBehaviour
 {
     bool canInteract = false;
     [SerializeField] GameObject interactableObject;
-
+    [SerializeField] InputManager inputManager;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Interactable"))
@@ -53,6 +53,7 @@ public class InteractSystem : MonoBehaviour
 
         {
             CheckInManager.Instance.StartCheckInState(CheckInManager.Instance.guestsInQueue[0]);
+            
             /*
                 if (GuestManager.Instance.occupants.Count == VacancyManager.Instance.roomInfo.Count)
 

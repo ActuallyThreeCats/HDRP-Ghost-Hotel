@@ -98,6 +98,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnterBlueprintMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""46ba5238-c4bc-47b6-b3ff-c5f6ed9dbd1a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,7 +245,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4ffe2274-bb62-4a2b-b413-c514817a0821"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -320,6 +329,478 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8ef192a-1df8-4cc1-9413-4afaef9b4e74"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnterBlueprintMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""BlueprintMap"",
+            ""id"": ""0d829615-6232-48b5-b0c3-5fa568ad57bc"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""0eca8e30-582a-47d4-b296-a7d72d75ec38"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseX"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""b7b4afaa-a386-4d18-9048-cb88a098b52b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseY"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fded425f-32cb-4b58-a30c-1a3e6d4df175"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a15861f-2210-48ac-88c8-23b8ae518c6c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""5bb77d1f-2a59-407d-9b8d-78ff1d95dfd9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ModifySpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""271d10a2-969d-4d5c-b612-e8cadb83a41d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""7aa91d24-6c1d-4f47-a798-a1521b61a1df"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Place"",
+                    ""type"": ""Button"",
+                    ""id"": ""fdc343c5-404f-4be9-93d1-6f59b55a86d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotateItem"",
+                    ""type"": ""Value"",
+                    ""id"": ""3186dde2-af7c-4610-a577-6b7bb4e20753"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""DeleteItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e30353b-424d-420d-9287-2e441714b5f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""57ee367c-67f3-4597-9867-ceae4c0b88b2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d5ff21b8-4368-4a41-a376-eb09c184959d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6fd97994-a6e8-4d2c-a4cc-0d195215042f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""35fcc6f5-9c31-44f7-9051-dc1587a9b735"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e0fa2d95-01ac-4ede-8223-98b00a2e58aa"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""878014d3-b9d3-4c8b-a54e-fd31abf3c7dc"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50d0185d-86ec-4d09-8baa-66594759e90c"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab10ff30-1d63-4485-aa29-f9c0ef1c0791"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca3c74da-331c-47d4-bb27-96a333c26d4c"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9390dc3c-96ad-478e-9a0b-39536f470051"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5abeec00-1871-4f4a-938a-80f4d60f2f18"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bb6411f-56ca-4672-904a-938ddf727e20"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d41722e-bb32-45a7-9b23-9d40cd67b048"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""7fa0d650-62a4-43f9-963e-4a332627318f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3473c77d-91cd-4e79-a43e-299aeede59f4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4bc8b513-40d9-4e68-aa9b-508988da53dd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4b63b12a-ae8e-4f78-8ff8-c9e2966941b4"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6e7a7b16-f8f3-4caf-a204-be21fea67331"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f22b8457-42f9-4954-8d26-91f039c902d7"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ModifySpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c43b501f-a4c0-4e43-95b2-00f3a65bde49"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ModifySpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d68b29c-7857-44e2-9be4-6aeb6946fe9b"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""075995f6-c2bb-48c1-8aa4-f0428b0f8730"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0514f60a-422b-4dd6-a251-bc767358cd9f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""66727bfb-31ba-4d88-91fc-aadbbd43a005"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""98249867-f718-4e13-b9f0-cabe8e0ccf80"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c153bfc5-9f7f-4e32-9939-c918f2ed1d3c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c481c81d-32a0-47bc-b487-9c99c1aaea90"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""8d18a342-27a7-4277-8efb-9608383699af"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateItem"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""57b9cb5e-55a8-4227-a737-e636f6d3a3f4"",
+                    ""path"": ""<Keyboard>/comma"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""688b03e2-87c8-4613-a6ea-6dfd02499e3c"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""One Modifier"",
+                    ""id"": ""b001a69b-c978-454d-908c-98daa9b2e848"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteItem"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""64f54385-9686-4d8a-a8dd-eb05aac8d6e6"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""8d189aaa-1e29-418c-adba-0e0d6953ac7f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeleteItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -336,6 +817,19 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Default_MouseX = m_Default.FindAction("MouseX", throwIfNotFound: true);
         m_Default_MouseY = m_Default.FindAction("MouseY", throwIfNotFound: true);
         m_Default_Cancel = m_Default.FindAction("Cancel", throwIfNotFound: true);
+        m_Default_EnterBlueprintMode = m_Default.FindAction("EnterBlueprintMode", throwIfNotFound: true);
+        // BlueprintMap
+        m_BlueprintMap = asset.FindActionMap("BlueprintMap", throwIfNotFound: true);
+        m_BlueprintMap_Move = m_BlueprintMap.FindAction("Move", throwIfNotFound: true);
+        m_BlueprintMap_MouseX = m_BlueprintMap.FindAction("MouseX", throwIfNotFound: true);
+        m_BlueprintMap_MouseY = m_BlueprintMap.FindAction("MouseY", throwIfNotFound: true);
+        m_BlueprintMap_Cancel = m_BlueprintMap.FindAction("Cancel", throwIfNotFound: true);
+        m_BlueprintMap_RotateCamera = m_BlueprintMap.FindAction("RotateCamera", throwIfNotFound: true);
+        m_BlueprintMap_ModifySpeed = m_BlueprintMap.FindAction("ModifySpeed", throwIfNotFound: true);
+        m_BlueprintMap_Zoom = m_BlueprintMap.FindAction("Zoom", throwIfNotFound: true);
+        m_BlueprintMap_Place = m_BlueprintMap.FindAction("Place", throwIfNotFound: true);
+        m_BlueprintMap_RotateItem = m_BlueprintMap.FindAction("RotateItem", throwIfNotFound: true);
+        m_BlueprintMap_DeleteItem = m_BlueprintMap.FindAction("DeleteItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,6 +897,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_MouseX;
     private readonly InputAction m_Default_MouseY;
     private readonly InputAction m_Default_Cancel;
+    private readonly InputAction m_Default_EnterBlueprintMode;
     public struct DefaultActions
     {
         private @PlayerControls m_Wrapper;
@@ -415,6 +910,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MouseX => m_Wrapper.m_Default_MouseX;
         public InputAction @MouseY => m_Wrapper.m_Default_MouseY;
         public InputAction @Cancel => m_Wrapper.m_Default_Cancel;
+        public InputAction @EnterBlueprintMode => m_Wrapper.m_Default_EnterBlueprintMode;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +944,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Cancel.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCancel;
+                @EnterBlueprintMode.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEnterBlueprintMode;
+                @EnterBlueprintMode.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEnterBlueprintMode;
+                @EnterBlueprintMode.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnEnterBlueprintMode;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -476,10 +975,118 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @EnterBlueprintMode.started += instance.OnEnterBlueprintMode;
+                @EnterBlueprintMode.performed += instance.OnEnterBlueprintMode;
+                @EnterBlueprintMode.canceled += instance.OnEnterBlueprintMode;
             }
         }
     }
     public DefaultActions @Default => new DefaultActions(this);
+
+    // BlueprintMap
+    private readonly InputActionMap m_BlueprintMap;
+    private IBlueprintMapActions m_BlueprintMapActionsCallbackInterface;
+    private readonly InputAction m_BlueprintMap_Move;
+    private readonly InputAction m_BlueprintMap_MouseX;
+    private readonly InputAction m_BlueprintMap_MouseY;
+    private readonly InputAction m_BlueprintMap_Cancel;
+    private readonly InputAction m_BlueprintMap_RotateCamera;
+    private readonly InputAction m_BlueprintMap_ModifySpeed;
+    private readonly InputAction m_BlueprintMap_Zoom;
+    private readonly InputAction m_BlueprintMap_Place;
+    private readonly InputAction m_BlueprintMap_RotateItem;
+    private readonly InputAction m_BlueprintMap_DeleteItem;
+    public struct BlueprintMapActions
+    {
+        private @PlayerControls m_Wrapper;
+        public BlueprintMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_BlueprintMap_Move;
+        public InputAction @MouseX => m_Wrapper.m_BlueprintMap_MouseX;
+        public InputAction @MouseY => m_Wrapper.m_BlueprintMap_MouseY;
+        public InputAction @Cancel => m_Wrapper.m_BlueprintMap_Cancel;
+        public InputAction @RotateCamera => m_Wrapper.m_BlueprintMap_RotateCamera;
+        public InputAction @ModifySpeed => m_Wrapper.m_BlueprintMap_ModifySpeed;
+        public InputAction @Zoom => m_Wrapper.m_BlueprintMap_Zoom;
+        public InputAction @Place => m_Wrapper.m_BlueprintMap_Place;
+        public InputAction @RotateItem => m_Wrapper.m_BlueprintMap_RotateItem;
+        public InputAction @DeleteItem => m_Wrapper.m_BlueprintMap_DeleteItem;
+        public InputActionMap Get() { return m_Wrapper.m_BlueprintMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BlueprintMapActions set) { return set.Get(); }
+        public void SetCallbacks(IBlueprintMapActions instance)
+        {
+            if (m_Wrapper.m_BlueprintMapActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMove;
+                @MouseX.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMouseX;
+                @MouseX.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMouseX;
+                @MouseX.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMouseX;
+                @MouseY.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMouseY;
+                @MouseY.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMouseY;
+                @MouseY.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnMouseY;
+                @Cancel.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnCancel;
+                @RotateCamera.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateCamera;
+                @ModifySpeed.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnModifySpeed;
+                @ModifySpeed.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnModifySpeed;
+                @ModifySpeed.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnModifySpeed;
+                @Zoom.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnZoom;
+                @Place.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
+                @Place.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
+                @Place.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnPlace;
+                @RotateItem.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateItem;
+                @RotateItem.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateItem;
+                @RotateItem.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnRotateItem;
+                @DeleteItem.started -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnDeleteItem;
+                @DeleteItem.performed -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnDeleteItem;
+                @DeleteItem.canceled -= m_Wrapper.m_BlueprintMapActionsCallbackInterface.OnDeleteItem;
+            }
+            m_Wrapper.m_BlueprintMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @MouseX.started += instance.OnMouseX;
+                @MouseX.performed += instance.OnMouseX;
+                @MouseX.canceled += instance.OnMouseX;
+                @MouseY.started += instance.OnMouseY;
+                @MouseY.performed += instance.OnMouseY;
+                @MouseY.canceled += instance.OnMouseY;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+                @RotateCamera.started += instance.OnRotateCamera;
+                @RotateCamera.performed += instance.OnRotateCamera;
+                @RotateCamera.canceled += instance.OnRotateCamera;
+                @ModifySpeed.started += instance.OnModifySpeed;
+                @ModifySpeed.performed += instance.OnModifySpeed;
+                @ModifySpeed.canceled += instance.OnModifySpeed;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+                @Place.started += instance.OnPlace;
+                @Place.performed += instance.OnPlace;
+                @Place.canceled += instance.OnPlace;
+                @RotateItem.started += instance.OnRotateItem;
+                @RotateItem.performed += instance.OnRotateItem;
+                @RotateItem.canceled += instance.OnRotateItem;
+                @DeleteItem.started += instance.OnDeleteItem;
+                @DeleteItem.performed += instance.OnDeleteItem;
+                @DeleteItem.canceled += instance.OnDeleteItem;
+            }
+        }
+    }
+    public BlueprintMapActions @BlueprintMap => new BlueprintMapActions(this);
     public interface IDefaultActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -490,5 +1097,19 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMouseX(InputAction.CallbackContext context);
         void OnMouseY(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnEnterBlueprintMode(InputAction.CallbackContext context);
+    }
+    public interface IBlueprintMapActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnMouseX(InputAction.CallbackContext context);
+        void OnMouseY(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnRotateCamera(InputAction.CallbackContext context);
+        void OnModifySpeed(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
+        void OnPlace(InputAction.CallbackContext context);
+        void OnRotateItem(InputAction.CallbackContext context);
+        void OnDeleteItem(InputAction.CallbackContext context);
     }
 }
