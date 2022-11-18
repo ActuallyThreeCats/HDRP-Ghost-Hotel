@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName ="FurnitureObject", menuName ="Crafty/Furniture")]
 public class FurnitureScriptableObject : ScriptableObject
@@ -49,12 +50,32 @@ public class FurnitureScriptableObject : ScriptableObject
         Left,
         Right
     }
-
+    [BoxGroup("Basic Info")]
     public string nameString;
+    [BoxGroup("Basic Info")]
+    [TextArea]
+    public string description;
+    //[BoxGroup("Prefabs")]
+    //[BoxGroup("Prefabs")]
+    [HorizontalGroup("Furniture Data")]
+    [PreviewField(75, ObjectFieldAlignment.Left), HideLabel, Title("Visuals", horizontalLine: false) ,Space(-9)]
+    [LabelWidth(50)]
+    public GameObject visual;
+    [VerticalGroup("Furniture Data/ETC")]
+    [LabelWidth(80)]
     public Transform prefab;
-    public Transform visual;
+
+    //[BoxGroup("Size")]
+    [VerticalGroup("Furniture Data/ETC")]
+    [LabelWidth(80)]
     public int width;
+    //[BoxGroup("Size")]
+    [VerticalGroup("Furniture Data/ETC")]
+    [LabelWidth(80)]
     public int height;
+    [VerticalGroup("Furniture Data/ETC")]
+    [LabelWidth(80)]
+    [EnumToggleButtons]
     public Dir dir;
 
     public int GetRotationAngle(Dir dir)

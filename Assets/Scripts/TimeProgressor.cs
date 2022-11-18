@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 using System;
+using Sirenix.OdinInspector;
 
 public enum Days
 {
@@ -27,23 +28,44 @@ public enum Months
 
 public class TimeProgressor : MonoBehaviour
 {
-    public Days day;
-    public Months month;
-    public int monthLength;
-    public int date = 1;
-    public int dayOfWeek;
-    public int daysInWeek = 7;
-    public int monthInt;
+
+    [BoxGroup("Controls")]
     [Range(0,24)]
     public float timeOfDay;
-    public float hour;
-    public float dayLength = 24;
-    public int hr;
-    public int min;
-    public bool twelveHourClock;
+    [BoxGroup("Controls")]
+    public Days day;
+    [BoxGroup("Controls")]
+    [EnumToggleButtons]
+    public Months month;
+ 
+    [TabGroup("Time")]
     public bool isPM;
+    [TabGroup("Time")]
+    public int date = 1;
+    [TabGroup("Time")]
+    public int dayOfWeek;
+    [TabGroup("Time")]
+    public float hour;
+    [TabGroup("Time")]
     public int hrPM;
+    [TabGroup("Time")]
+    public int hr;
+    [TabGroup("Time")]
+    public int min;
+    [TabGroup("Time")]
     public int year =1;
+
+    [TabGroup("Settings")]
+    public int monthLength;
+    [TabGroup("Settings")]
+    public int daysInWeek = 7;
+    [TabGroup("Settings")]
+    public float dayLength = 24;
+    [TabGroup("Settings")]
+    public int monthInt;
+    [TabGroup("Settings")]
+    public bool twelveHourClock;
+    [TabGroup("Settings")]
     public float OrbitSpeed = 1.0f;
     public Light sun;
     public Light moon;

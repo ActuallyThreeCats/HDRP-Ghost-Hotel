@@ -32,7 +32,7 @@ public class FurnitureGhost : MonoBehaviour
             RefreshVisual();
         }
         gridBuildingSystem.grid.GetXZ(gridBuildingSystem.GetMouseWorldPosition(), out int x, out int z);
-        if (x >= 0 && z >= 0 && x < gridBuildingSystem.grid.GetWidth() && z < gridBuildingSystem.grid.GetHeight())
+        if (x >= 0 && z >= 0 && x < gridBuildingSystem.grid.GetWidth() && z < gridBuildingSystem.grid.GetHeight() && gridBuildingSystem.blueprintCam.isCurrentCamera)
         {
            if(visual == null)
             {
@@ -90,7 +90,7 @@ public class FurnitureGhost : MonoBehaviour
                 //Debug.Log("InGrid");
                 if(visual == null)
                 {
-                    visual = Instantiate(furnitureScriptableObject.visual, gridBuildingSystem.GetMouseWorldPosition(), Quaternion.identity);
+                    visual = Instantiate(furnitureScriptableObject.visual.transform, gridBuildingSystem.GetMouseWorldPosition(), Quaternion.identity);
                     UpdateRefresh();
 
                 }

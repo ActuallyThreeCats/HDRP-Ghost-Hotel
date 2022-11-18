@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Sirenix.OdinInspector;
 public class FurnitureIndex : MonoBehaviour
 {
     public static FurnitureIndex Instance;
 
+    [InlineEditor]
     public List<FurnitureScriptableObject> furniturePrefabs = new List<FurnitureScriptableObject>();
 
     [SerializeField]

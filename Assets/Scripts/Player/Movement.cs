@@ -8,7 +8,8 @@ public class Movement : MonoBehaviour
     [SerializeField] BlueprintModeCameraController blueprintCam;
     [SerializeField] CharacterController controller;
     [SerializeField] InputManager input;
-    [SerializeField] float speed = 11f;
+    [SerializeField] float minSpeed, maxSpeed;
+    [SerializeField] float speed;
     [SerializeField] float rotSpeed =4f;
     [SerializeField] float jumpHeight = 3.5f;
     bool jump;
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     [SerializeField] Transform cameraMain;
     bool isGrounded;
+    bool isSprinting;
 
     Vector2 horizontalInput;
     Vector3 horizontalVelocity;
@@ -30,7 +32,26 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         buildSettings = new NavMeshBuildSettings();
+
+    }
+
+    
+    private void Sprint_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        isSprinting = false;
+    }
+
+    private void Sprint_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        isSprinting = true;
+    }
+
+    private void Start()
+    {
+        input.controls.Default.Sprint.started += Sprint_started;
+        input.controls.Default.Sprint.canceled += Sprint_canceled;
         UpdateNavmesh();
+        
     }
     public void ReceiveInput(Vector2 _horizontalInput)
     {
@@ -51,6 +72,15 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isSprinting)
+        {
+            speed = maxSpeed;
+        }
+        else
+        {
+            speed = minSpeed;
+        }
+
         if (!CheckInManager.Instance.isCheckingGuestIn && !blueprintCam.isCurrentCamera)
         {
             isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundMask);
