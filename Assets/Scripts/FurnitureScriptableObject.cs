@@ -57,7 +57,7 @@ public class FurnitureScriptableObject : ScriptableObject
     public string description;
     //[BoxGroup("Prefabs")]
     //[BoxGroup("Prefabs")]
-    [HorizontalGroup("Furniture Data")]
+    [HorizontalGroup("Furniture Data",75)]
     [PreviewField(75, ObjectFieldAlignment.Left), HideLabel, Title("Visuals", horizontalLine: false) ,Space(-9)]
     [LabelWidth(50)]
     public GameObject visual;
